@@ -1,0 +1,28 @@
+.viewTableRowDetailModal {
+    width: 100%;
+    max-width: 500px !important;
+    top: 0 !important;
+    right: 0 !important;
+    max-height: 100vh;
+    height: 100vh;
+    /*background: red;*/
+}
+
+.createOrUpdateLoanProductsModal {
+    width: 100%;
+    max-width: 800px;
+}
+
+.searchablePrepopulateDataModal {
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    /*max-height: 100vh;*/
+}
+
+.createOrUpdateLetterOfCreditModal {
+    height: 100%;
+    background-color: white;
+    overflow-y: auto;
+    max-width: 800px;
+}

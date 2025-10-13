@@ -1,13 +1,9 @@
 "use client"
-import RubiesLogo from "@/assets/icons/companyLogo.svg"
 import "./menu.css"
-import BaseButton from "@/components/ui/button/BaseButton";
 import {RouteConstant} from "@/utilities/constants/routeConstant";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/stores";
-import IconButton from "@/components/ui/button/IconButton";
 import CloseIcon from "@/components/icon/CloseIcon";
-import BaseSwitch from "@/components/ui/switch/BaseSwitch";
 import {baseStore} from "@/stores/baseStore";
 import {AppConfig} from "@/configs/appConfig";
 import NotificationBellIcon from "@/components/icon/NotificationBellIcon";
@@ -18,9 +14,10 @@ import BaseAvatar from "@/components/ui/avatar/BaseAvatar";
 import StatusIndicator from "@/components/custom/StatusIndicator";
 import {AppDispatch} from "@/configs/storeConfig";
 import {useRouter} from "next/navigation";
+import { BaseButton, BaseSwitch, IconButton } from "qucoon-components";
 
 export type HeaderProps = {
-    type: "dashboard" | "login" | "signup" | "kyc" | "resetPassword",
+    type?: "dashboard" | "login" | "signup" | "kyc" | "resetPassword",
     title?: string;
 }
 
@@ -134,7 +131,7 @@ const HeaderEndComponent = ({type}: { type: HeaderProps["type"] }) => {
     }
     if (type == "login") {
         const handleNavigateToGetStarted = () => {
-            router.push(RouteConstant.auth.register.path)
+            router.push(RouteConstant.auth.signup.path)
         }
         return (<div className={"header-end-container"}>
             <p className={"label subtitle"}>Dont have an account?</p>
@@ -176,8 +173,7 @@ const HeaderStartComponent = ({title, type}: HeaderProps) => {
             </div>
         )
     }
-    return <p>Company Logo</p>
-    return (<RubiesLogo style={{cursor: "pointer"}} onClick={handleLogoClick}/>)
+    // return (<CompanyLogo style={{cursor: "pointer", width: 150}} onClick={handleLogoClick}/>)
 
 }
 

@@ -7,7 +7,7 @@ export default function EditIcon(props: SVGProps<SVGSVGElement>) {
             aria-hidden="true"
             viewBox="0 0 24 24"
             {...props}
-            className={`icon ${props.className}`}
+            // className={`icon ${props.className}`}
         >
             <g
                 fill="none"

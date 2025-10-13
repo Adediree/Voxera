@@ -1,0 +1,41 @@
+.summaries-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.summaries-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563; /* neutral gray */
+  margin: 0;
+}
+
+.themes-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* ✅ ensures wrapping */
+  gap: 24px;
+  width: 100%;
+}
+
+.theme-item {
+  /* background-color: #f3f4f6; */
+  color: #4b5563;
+  /* border-radius: 12px; */
+  /* padding: 8px 16px; */
+  font-size: 0.8rem; /* 14px */
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.theme-item:hover {
+  background-color: #e5e7eb; /* slightly darker on hover */
+}
+
+.no-themes {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+}

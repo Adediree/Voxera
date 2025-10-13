@@ -1,4 +1,6 @@
 // modalUtil.ts
+
+"use client"
 import {modalStore} from "@/stores/modalStore";
 import type {ModalEnum} from "@/utilities/enums/modalEnum";
 import {v4 as uuidv4} from "uuid"
@@ -38,7 +40,7 @@ class ModalUtil {
 
         entry.resolve(submittedData);
         delete this.resolvers[modalId];
-        store.dispatch(modalStore.mutation.closeModal());
+        // store.dispatch(modalStore.mutation.closeModal());
     }
 
     cancelModal(modalId: string) {

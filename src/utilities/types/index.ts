@@ -10,6 +10,17 @@ export interface CustomCSSProperties extends CSSProperties {
 export type BaseResponse = {
     responseCode: string;
     responseMessage: string;
+    data?: any
+}
+
+export type BaseErrorResponse = {
+    "type": string,
+    "title": string,
+    "status": number,
+    "errors": {
+        [key: string]: string[]
+    },
+    "traceId": string
 }
 
 

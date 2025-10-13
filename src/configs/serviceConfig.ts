@@ -1,130 +1,185 @@
-import axios from "axios";
+"use client";
 
-import {GetThunkAPI} from "@reduxjs/toolkit";
-import {ThunkApiConfig} from "@/configs/storeConfig";
-import {RootState} from "@/stores";
-import {appConfig} from "@/configs/appConfig";
-import {BaseEnum} from "@/utilities/enums/baseEnum";
-import BaseToast from "@/components/ui/toast/BaseToast";
+import {
+  BaseQueryApi,
+  BaseQueryFn,
+  createApi,
+  FetchArgs,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query/react";
+import { appConfig } from "@/configs/appConfig";
+import { BaseResponse } from "@/utilities/types";
+import { BaseUtil } from "@/utilities/baseUtil";
+import { toastUtil } from "@/utilities/toastUtil";
+import { RootState } from "@/stores";
+import { ApiTagsEnum } from "@/utilities/enums/apiTagsEnum";
+import { authStore } from "@/stores/authStore";
+import { RouteConstant } from "@/utilities/constants/routeConstant";
+import { ModalUtil } from "qucoon-components";
+import { ModalEnum } from "@/utilities/enums/modalEnum";
 
-let isSessionExpiredToastVisible = false; // Global flag to track session expiry toast
-let isRequestTimedOutToastVisible = false; // Global flag to track session expiry toast
-let isNetworkErrToastVisible = false; // Global flag to track session expiry toast
-
-const ApiClient = (thunk: GetThunkAPI<ThunkApiConfig>) => {
-    const allState = thunk.getState() as RootState
-    // const token = (thunk.getState() as RootState).auth.token
-    //axiosInstance
-    const stage = allState?.base?.appStage || appConfig.stage;
-    const axiosInstance = axios.create({
-        baseURL: appConfig[`baseUrl${stage}`],
-        // withCredentials: true,
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-        },
-        timeout: 29000
-    });
-
-    //interceptors request. triggers just before request reaches the server.
-    axiosInstance.interceptors.request.use(function (config) {
-        // config.headers.Authorization = `${token}`
-        return config;
-    }, function (error) {
-        return Promise.reject(error);
-    });
-
-
-    //interceptors response // triggers just before response from server gets to sender
-    axiosInstance.interceptors.response.use((response) => {
-
-            if (response.data?.responseCode !== BaseEnum.RESPONSE_CODE_SUCCESS) {
-                // Display error toast with custom options
-
-                if (response.data?.responseMessage?.includes('JWT')) {
-                    if (!isSessionExpiredToastVisible) {
-                        isSessionExpiredToastVisible = true; // Set flag to prevent duplicate toasts
-
-                        BaseToast({
-                            message: "Session expired, Kindly login",
-                            type: "error",
-                            options: {
-                                onClose: () => {
-                                    isSessionExpiredToastVisible = false; // Reset flag when toast closes
-                                },
-                            },
-                        });
-
-                        // thunk.dispatch(auth.action.logout());
-                    }
-                } else {
-                    BaseToast({
-                        message: response.data?.responseMessage,
-                        type: 'error',
-                    });
-                }
-            }
-            return response
-        },
-        (error) => {
-            if (error?.code == "ERR_NETWORK") {
-                if (!isNetworkErrToastVisible) {
-                    isNetworkErrToastVisible = true; // Set flag to prevent duplicate toasts
-
-                    BaseToast({
-                        message: "Network Error, please check your network connection",
-                        type: 'error',
-                        options: {
-                            onClose: () => {
-                                isNetworkErrToastVisible = false; // Reset flag when toast closes
-                            },
-                        },
-                    });
-                }
-
-                return {
-                    status: 503,
-                    statusText: 'Service unavailable',
-                    headers: {},
-                    config: {},
-                    request: {},
-                    data: {
-                        responseCode: "NetworkError",
-                        responseMessage: "Network Error, please check your connection"
-                    }
-                }
-            }
-            if (error?.code == "ECONNABORTED") {
-                if (!isRequestTimedOutToastVisible) {
-                    isRequestTimedOutToastVisible = true; // Set flag to prevent duplicate toasts
-
-                    BaseToast({
-                        message: "Request Timed out, try again later",
-                        type: 'error',
-                        options: {
-                            onClose: () => {
-                                isRequestTimedOutToastVisible = false; // Reset flag when toast closes
-                            },
-                        },
-                    });
-                }
-                return {
-                    status: 503,
-                    statusText: 'Service unavailable',
-                    headers: {},
-                    config: {},
-                    request: {},
-                    data: {
-                        responseCode: "RequestAbortedError",
-                        responseMessage: "Request Timed out, try again later"
-                    }
-                }
-            }
-            return Promise.reject(error)
-        })
-    return axiosInstance
+// Extended FetchArgs to include expected response codes
+interface ExtendedFetchArgs extends FetchArgs {
+  expectedResponseCodes?: string[]; // Response codes that should not trigger error handling
+  // skipGlobalErrorHandling?: boolean; // Completely skip global error handling
 }
+
+const handleApiError = (
+  error: FetchBaseQueryError,
+  api: BaseQueryApi,
+  expectedResponseCodes?: string[]
+) => {
+  const status = error.status;
+  const data = error.data as BaseResponse;
+  const defaultMessage = "An unexpected error occurred";
+  const message = data?.responseMessage || defaultMessage;
+  const responseCode = data?.responseCode;
+  // Skip error handling if this response code is expected by the caller
+
+  // Handle session expiration
+  if (
+    message.includes("JWT") ||
+    message.includes("Authorization is required")
+  ) {
+    toastUtil.showUniqueToast(
+      "session-expired",
+      "Session expired, kindly login",
+      "error"
+    );
+    api.dispatch(authStore.action.logout());
+    if (typeof window !== "undefined") {
+      console.log("window:", window);
+      // window.history.pushState(null, "", RouteConstant.auth.login.path,)
+      window.location.href = RouteConstant.auth.login.path;
+    }
+    return;
+  }
+
+  // Handle specific error types
+  switch (status) {
+    case 400:
+      // Don't show toast for validation errors - let form handle them
+      break;
+    case 403:
+      toastUtil.showUniqueToast("forbidden", "Forbidden resource", "error");
+      break;
+    case 404:
+      toastUtil.showUniqueToast("not-found", "Resource not found", "error");
+      break;
+    case 500:
+      toastUtil.showUniqueToast("server-error", "Server error", "error");
+      break;
+    case "FETCH_ERROR":
+      toastUtil.showUniqueToast(
+        "network-error",
+        "Network error, please check your connection",
+        "error"
+      );
+      break;
+    case "TIMEOUT_ERROR":
+      toastUtil.showUniqueToast(
+        "timeout-error",
+        "Request timed out, try again later",
+        "error"
+      );
+      break;
+    default:
+      if (
+        message &&
+        message !== defaultMessage &&
+        !(
+          expectedResponseCodes &&
+          responseCode &&
+          expectedResponseCodes.includes(responseCode)
+        )
+      ) {
+        ModalUtil.getInstance().open(ModalEnum.AppErrorModal, {
+          message: message,
+          title: "Error Occurred",
+        });
+        // toastUtil.showUniqueToast(`error-${status}`, message, "error");
+      }
+  }
+};
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: appConfig.baseUrlDev,
+  prepareHeaders: (headers, { getState }) => {
+    const authState = (getState() as RootState).auth;
+    const token = authState?.token || "";
+
+    headers.set("Authorization", `${token}`);
+
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
+    return headers;
+  },
+  timeout: 29000,
+});
+
+const baseQueryWithErrorHandling: BaseQueryFn<
+  string | ExtendedFetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  BaseUtil.logger("requestArgument: ", args);
+
+  // Extract our custom properties
+  let expectedResponseCodes: string[] | undefined;
+  // let skipGlobalErrorHandling = false;
+  let cleanArgs = args;
+
+  if (typeof args === "object" && "expectedResponseCodes" in args) {
+    expectedResponseCodes = args.expectedResponseCodes;
+    // skipGlobalErrorHandling = args.skipGlobalErrorHandling || false;
+
+    // Remove our custom properties before passing to baseQuery
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { expectedResponseCodes: _, ...rest } = args;
+    cleanArgs = rest;
+  }
+
+  const result = await baseQuery(cleanArgs, api, extraOptions);
+
+  // Skip all error handling if requested
+  // if (skipGlobalErrorHandling) {
+  //     return result;
+  // }
+
+  // Handle API errors
+  if (result.error) {
+    handleApiError(result.error, api, expectedResponseCodes);
+  }
+
+  // Check for custom business logic errors
+  if (
+    result.data &&
+    !BaseUtil.isApiResponseSuccessful(result.data as BaseResponse)
+  ) {
+    handleApiError(
+      {
+        status: "CUSTOM_ERROR",
+        data: result.data,
+        error: "",
+      },
+      api,
+      expectedResponseCodes
+    );
+  }
+
+  BaseUtil.logger("result: ", result);
+  return result;
+};
+// Create base API instance
+const baseApi = createApi({
+  baseQuery: baseQueryWithErrorHandling,
+  tagTypes: Object.values(ApiTagsEnum),
+  endpoints: () => ({}),
+  keepUnusedDataFor: 60, // 60 seconds cache lifetime
+  refetchOnReconnect: true,
+});
 
 export const BaseService = {
-    appClient: ApiClient,
-}
+  appClient: baseApi,
+};

@@ -1,9 +1,9 @@
 import {useNavigate} from "react-router";
 import "../form.css"
 import {RouteConstant} from "@/utilities/constants/routeConstant";
-import {loginRequestInit} from "@/models/requests/auth/loginRequest";
+import {loginRequestInit} from "@/models/requests/authentication/loginRequest";
 import {useFormik} from "formik";
-import {AuthValidation} from "@/models/validations/authValidation";
+import {AuthenticationValidation} from "@/models/validations/authenticationValidation";
 import BaseButton from "@/components/ui/button/BaseButton";
 import BaseInput from "@/components/ui/input/BaseInput";
 
@@ -32,7 +32,7 @@ const LoginForm = (props: React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLF
     const formik = useFormik({
         initialValues,
         onSubmit: handleSubmit,
-        validationSchema: AuthValidation.login,
+        validationSchema: AuthenticationValidation.login,
     })
 
     return (

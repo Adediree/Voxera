@@ -1,0 +1,45 @@
+.top-keywords-container {
+  background: #fff;
+  border-radius: 12px;
+  /* border-top-left-radius: 0px; */
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 229px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.top-keywords-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.circle-wrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.circle-word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #555;
+  opacity: 0.8;
+}
+
+.center-word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+}

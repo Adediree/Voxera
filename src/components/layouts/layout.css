@@ -1,16 +1,17 @@
 .authLayout-title-container {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .authLayout-main-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 500px;
-    margin: 0 auto;
-    gap: 3rem;
-    height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  gap: 3rem;
+  height: 100%;
+  /* background-color: white; */
 }

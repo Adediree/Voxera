@@ -199,15 +199,15 @@ body {
 }
 
 .icon {
-    text-align: center;
+    /*text-align: center;*/
     /*border-radius: 12px;*/
     /*justify-content: center;*/
     /*align-items: center;*/
-    height: 1.5em;
-    width: 1.5em;
-    font-size: inherit;
-    display: flex;
-    color: var(--gray--3);
+    /*height: 1.5em;*/
+    /*width: 1.5em;*/
+    /*font-size: inherit;*/
+    /*display: flex;*/
+    /*color: var(--gray--3);*/
 }
 
 /*.icon path {*/

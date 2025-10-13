@@ -1,0 +1,67 @@
+.chartContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 24px;
+  /* background: #ffffff; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+}
+
+.chartTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.chartWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.noData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6b7280;
+  font-size: 14px;
+  background: #f9fafb;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .chartContainer {
+    padding: 16px;
+  }
+
+  .chartTitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+}
+
+/* Optional: Custom legend styling overrides */
+.chartContainer :global(.apexcharts-legend) {
+  justify-content: center !important;
+}
+
+.chartContainer :global(.apexcharts-legend-series) {
+  display: flex !important;
+  align-items: center !important;
+  margin: 4px 8px !important;
+}
+
+.chartContainer :global(.apexcharts-legend-marker) {
+  margin-right: 6px !important;
+}
+
+.chartContainer :global(.apexcharts-legend-text) {
+  font-size: 14px !important;
+  color: #374151 !important;
+}

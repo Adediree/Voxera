@@ -245,106 +245,113 @@ export class TimeUtil {
         return date.split('T')[0]; // Simplified date formatting
     }
 
-    // static isValidDate(dateString: string) {
-    //     if (!dateString) return false;
-    //     const formats = [
-    //         'YYYY-MM-DD HH:mm:ss.SSS', // 3-digit milliseconds
-    //         'YYYY-MM-DD HH:mm:ss.SS',  // 2-digit milliseconds
-    //         'YYYY-MM-DD HH:mm:ss.S',   // 1-digit milliseconds
-    //         'YYYY-MM-DD HH:mm:ss'      // No milliseconds
-    //     ];
-    //     if (moment(dateString, formats, true).isValid()) return true;
-    //
-    //     const datePattern = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
-    //
-    //     // Trim the date string to remove leading/trailing whitespace
-    //
-    //     if (!datePattern.test(dateString)) {
-    //         return false;
-    //     }
-    //
-    //     const normalizedDateString = dateString.trim().replace(" ", "T");
-    //     const date = new Date(normalizedDateString);
-    //
-    //     return !isNaN(date.getTime());
-    // }
+    /**
+     * Validates if the input is a valid date.
+     * Accepts ISO date strings, formatted date strings, and 13-digit timestamps.
+     * @param dateInput - The date input to validate.
+     * @returns {boolean} - Returns true if the input is a valid date, false otherwise.
+     */
+    static isValidDate(dateInput: string | number): boolean {
+        if (!dateInput) return false;
 
-    static isValidDate(dateString: string) {
-        if (!dateString) return false;
-        const formats = [
-            'YYYY-MM-DD HH:mm:ss.SSS', // 3-digit milliseconds
-            'YYYY-MM-DD HH:mm:ss.SS',  // 2-digit milliseconds
-            'YYYY-MM-DD HH:mm:ss.S',   // 1-digit milliseconds
-            'YYYY-MM-DD HH:mm:ss',      // No milliseconds
-            'YYYY-MM-DD HH:mm',      // No seconds
-            'YYYY-MM-DD HH',      // No minutes
-            'YYYY-MM-DD',      // No time
-        ];
-        if (moment(dateString, formats, true).isValid()) return true;
+        const input = typeof dateInput === "string" ? dateInput.trim() : dateInput;
+        // Check if input is a formatted string date using moment
+        if (typeof input === "string") {
+            const formats = [
+                'YYYY-MM-DD HH:mm:ss.SSS', // 3-digit milliseconds
+                'YYYY-MM-DD HH:mm:ss.SS',  // 2-digit milliseconds
+                'YYYY-MM-DD HH:mm:ss.S',   // 1-digit milliseconds
+                'YYYY-MM-DD HH:mm:ss',      // No milliseconds
+                'YYYY-MM-DD HH:mm',      // No seconds
+                'YYYY-MM-DD HH',      // No minutes
+                'YYYY-MM-DD',      // No time
+            ];
+            if (moment(input, formats, true).isValid()) return true;
 
-        const datePattern = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
+            const datePattern = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
 
-        // Trim the date string to remove leading/trailing whitespace
+            // Trim the date string to remove leading/trailing whitespace
 
-        if (!datePattern.test(dateString)) {
-            return false;
+            if (!datePattern.test(input)) {
+                return false;
+            }
+
+            const normalizedDateString = input.toString().trim().replace(" ", "T");
+            const date = new Date(normalizedDateString);
+
+            return !isNaN(date.getTime());
         }
+        const timestamp = Number(input);
+        if (!isNaN(timestamp)) {
+            if (/^\d{13}$/.test(String(timestamp))) {
+                // Milliseconds
+                const date = new Date(timestamp);
+                const year = date.getUTCFullYear();
+                return year >= 1970 && year <= 2100;
+            } else if (/^\d{10}$/.test(String(timestamp))) {
+                // Seconds
+                const date = new Date(timestamp * 1000);
+                const year = date.getUTCFullYear();
+                return year >= 1970 && year <= 2100;
+            }
+        }
+        return false;
 
-        const normalizedDateString = dateString.toString().trim().replace(" ", "T");
-        const date = new Date(normalizedDateString);
-
-        return !isNaN(date.getTime());
     }
 
     // New function to handle both date and time formatting
-    static getFormatDateTime = (dateTimeString: string, options?: {
-        formatDateAs?: DateTimeFormatOptions,
-        formatTimeAs?: DateTimeFormatOptions
-    }) => {
-        if (!dateTimeString) return {
-            formattedDate: "Invalid date",
-            formattedTime: "Invalid DateTime",
-            isDateTimeValid: false
+    static getFormatDateTime = (
+        input: string | number,
+        options?: {
+            formatDateAs?: DateTimeFormatOptions,
+            formatTimeAs?: DateTimeFormatOptions
         }
-        const consistentDateString = `${dateTimeString.replace(" ", "T")}${(dateTimeString?.includes(":") && !dateTimeString?.includes("Z")) ? "Z" : ""}`;
-        // const dateTime = DateTime.fromISO(consistentDateString, {zone: "local"});
-        const dateTime = DateTime.fromISO(consistentDateString);
+    ): {
+        formattedDate: string
+        formattedTime: string
+        fullFormattedDateTime: string
+        isDateTimeValid: boolean
+    } => {
+        if (!this.isValidDate(input)) {
+            return {
+                formattedDate: "Invalid date",
+                formattedTime: "Invalid time",
+                fullFormattedDateTime: "Invalid DateTime",
+                isDateTimeValid: false
+            };
+        }
+        let dateTime: DateTime;
 
-        // console.log("dateTimeString, consistentDateString, dateTime :", consistentDateString,)
-        // console.log("consistentDateString", consistentDateString, "dateTime", dateTime)
-        // Check if dateTime is valid
+        const inputStr = String(input);
+        if (/^\d{13}$/.test(inputStr)) {
+            // Milliseconds
+            dateTime = DateTime.fromMillis(Number(input));
+        } else if (/^\d{10}$/.test(inputStr)) {
+            dateTime = DateTime.fromSeconds(Number(input));
+            console.log("seconds", dateTime)
+            // Seconds
+        } else {
+            const consistentString = `${inputStr.replace(" ", "T")}${(inputStr.includes(":") && !inputStr.includes("Z")) ? "Z" : ""}`;
+            dateTime = DateTime.fromISO(consistentString);
+        }
+
         if (!dateTime.isValid) {
-            return {formattedDate: "Invalid date", formattedTime: "Invalid DateTime", isDateTimeValid: false};
+            return {
+                formattedDate: "Invalid date",
+                formattedTime: "Invalid time",
+                fullFormattedDateTime: "Invalid DateTime",
+                isDateTimeValid: false
+            };
         }
 
-        const formattedDate = dateTime.toLocaleString(options?.formatDateAs ?? DateTime.DATE_MED); // Example: Aug 26, 2024
-        const formattedTime = dateTime.toLocaleString(options?.formatDateAs ?? DateTime.TIME_24_SIMPLE) == "00:00" ? "" : dateTime.toLocaleString(options?.formatDateAs ?? DateTime.TIME_24_SIMPLE); // Example: 3:15 PM
-        // console.log("{formattedDate, formattedTime}", {formattedDate, formattedTime})
-        return ({formattedDate, formattedTime, isDateTimeValid: true});
+        const formattedDate = dateTime.toLocaleString(options?.formatDateAs ?? DateTime.DATE_MED);
+        const formattedTime = dateTime.toLocaleString(options?.formatTimeAs ?? DateTime.TIME_24_SIMPLE);
+
+        return {
+            formattedDate,
+            formattedTime: formattedTime === "00:00" ? "" : formattedTime,
+            fullFormattedDateTime: `${formattedDate}${formattedTime === "00:00" ? "" : ", " + formattedTime}`.trim(),
+            isDateTimeValid: true
+        };
     };
-
-
-    // static isValidDate(dateString: string) {
-    //     // Regular expression to match YYYY-MM-DD and YYYY-MM-DDTHH:MM:SS.sss
-    //
-    //     // const datePattern = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
-    //     const datePattern = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
-    //
-    //     // Trim the date string to remove leading/trailing whitespace
-    //     dateString = dateString?.trim();        // const datePattern2 = /^(?:\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(?:[T\s](?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?)?)?$/;
-    //
-    //
-    //     if (!datePattern.test(dateString)) {
-    //         console.log("Invalid date format: ", dateString);
-    //         return false;
-    //     }
-    //
-    //     const normalizedDateString = dateString.trim().replace(" ", "T");
-    //     console.log("Normalized date string:", normalizedDateString);
-    //
-    //     const date = new Date(normalizedDateString);
-    //     console.log("Created date object:", date);
-    //
-    //     return !isNaN(date.getTime());
-    // }
 }

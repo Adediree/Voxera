@@ -1,0 +1,99 @@
+.otp-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keeps it from centering vertically */
+  gap: 2rem;
+  padding-top: 60px; /* same as your original */
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.otp-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.otp-content img {
+  width: 60px;
+}
+
+.otp-content h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.3rem;
+}
+
+.otp-content p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.otp-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.otp-link-button {
+  border: none;
+  background: none;
+  border-bottom: 1px solid #1f2937;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
+
+.otp-link-button:hover {
+  color: #ea4335;
+  border-bottom-color: #ea4335;
+}
+
+/* ===============================
+   RESPONSIVENESS
+   =============================== */
+
+@media (max-width: 768px) {
+  .otp-page-wrapper {
+    padding-top: 50px;
+  }
+
+  .otp-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .otp-content p {
+    font-size: 0.95rem;
+  }
+
+  .otp-buttons {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .otp-page-wrapper {
+    padding-top: 40px;
+  }
+
+  .otp-content h1 {
+    font-size: 1.1rem;
+  }
+
+  .otp-content p {
+    font-size: 0.9rem;
+  }
+
+  .otp-link-button {
+    font-size: 0.85rem;
+  }
+}

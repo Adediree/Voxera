@@ -1,5 +1,12 @@
-const HomePage = () => {
-    return (<h1>Hi Topsy</h1>)
-}
+import AuthLayout from "@/components/layouts/authLayout";
+import Page from "./auth/signup/page";
 
-export default HomePage
+export const HomePage = () => {
+  return (
+    <AuthLayout>
+      <Page />
+    </AuthLayout>
+  );
+};
+
+export default HomePage;

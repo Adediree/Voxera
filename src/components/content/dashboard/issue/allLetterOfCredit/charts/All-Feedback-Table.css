@@ -1,0 +1,82 @@
+.all-feedback {
+  width: 100%;
+}
+
+/* ============ TABLE STRUCTURE ============ */
+.all-feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Poppins, sans-serif;
+}
+
+.all-feedback-table th,
+.all-feedback-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #d9d9d9ab;
+  vertical-align: middle;
+  height: 80px; /* ✅ ensures every row has the same height */
+}
+
+.all-feedback-table td {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ============ HEADER STYLING ============ */
+.feedback-table-header {
+  background-color: white;
+  border: none;
+  box-shadow: none;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.feedback-header-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* ============ ROW & TEXT STYLING ============ */
+.feedback-header-sub-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* ✅ Only affects the “change” column — allows text wrapping while centered */
+.change-cell {
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+  max-width: 280px;
+  height: 100%;
+  display: flex;
+  align-items: center; /* centers vertically */
+  justify-content: center; /* centers horizontally */
+  text-align: center;
+}
+
+/* ✅ Centers text/content in specific cells */
+.centered-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ✅ Keeps logo perfectly aligned and same size */
+.source-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.source-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

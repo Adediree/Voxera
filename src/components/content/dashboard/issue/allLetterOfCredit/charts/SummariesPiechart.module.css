@@ -1,0 +1,64 @@
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+}
+
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.chartContent {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px; /* space between chart and legend */
+  flex-wrap: wrap; /* responsive */
+  /* border: 1px solid red; */
+}
+
+.chartWrapper {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chartLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+  justify-content: flex-start;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  flex: 1;
+  font-weight: 500;
+}
+
+.legendValue {
+  font-weight: 600;
+  color: #111827;
+}

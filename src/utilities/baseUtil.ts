@@ -1,4 +1,6 @@
 import {appConfig} from "@/configs/appConfig";
+import {BaseResponse} from "@/utilities/types";
+import {BaseEnum} from "@/utilities/enums/baseEnum";
 
 export class BaseUtil {
 
@@ -6,5 +8,11 @@ export class BaseUtil {
         if (appConfig.stage == "Dev") {
             console.log(...logInfo);
         }
+    }
+
+    static isApiResponseSuccessful(response: BaseResponse): boolean {
+        return response.responseCode == BaseEnum.RESPONSE_CODE_SUCCESS;
+        // return response.isSuccessful
+        // return ["200", "201"].includes(String(response.code))
     }
 }
