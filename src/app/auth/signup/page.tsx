@@ -1,17 +1,17 @@
-import AuthLayout, { AuthLayoutProps } from "@/components/layouts/authLayout";
+import { AuthLayoutProps } from "@/components/layouts/authLayout";
 import SignupContent from "@/components/content/auth/signup/signupContent";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function Page() {
-  const authPageLayoutProps: AuthLayoutProps = {
-    // headerProps: {
-    //   type: "signup",
-    // },
-    img: "/Voxera-Logo-Black-1.svg",
-    title: "",
-    subtitle:
-      "Sign up to analyze reviews, benchmark against competitors, and uncover market trends that drive business growth.",
-  };
+  // const authPageLayoutProps: AuthLayoutProps = {
+  //   headerProps: {
+  //     type: "signup",
+  //   },
+  //   img: "/Voxera-Logo-Black-1.svg",
+  //   title: "",
+  //   subtitle:
+  //     "Sign up to analyze reviews, benchmark against competitors, and uncover market trends that drive business growth.",
+  // };
 
   return (
     <div

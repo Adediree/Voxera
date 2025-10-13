@@ -1,7 +1,6 @@
 "use client";
 
 import GoogleBar from "@/components/content/dashboard/issue/allLetterOfCredit/charts/GoogleBarChart";
-import GoogleBarChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/GoogleBarChart";
 import StackedProgressBar from "@/components/content/dashboard/issue/allLetterOfCredit/charts/ProgressBarChart";
 import TrustPilotBar from "@/components/content/dashboard/issue/allLetterOfCredit/charts/TrustPilotBarChart";
 import VoxeraBar from "@/components/content/dashboard/issue/allLetterOfCredit/charts/VoxeraBarChart";

@@ -1,5 +1,4 @@
 "use client";
-import AuthLayout, { AuthLayoutProps } from "@/components/layouts/authLayout";
 import BaseProgress from "@/components/ui/progress/BaseProgress";
 import { RouteConstant } from "@/utilities/constants/routeConstant";
 import { useRouter } from "next/navigation";

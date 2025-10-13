@@ -1,4 +1,3 @@
-import AuthLayout, { AuthLayoutProps } from "@/components/layouts/authLayout";
 import OnBoardingContent from "@/components/content/auth/OnBoarding/OnBoardingContent";
 import OnBoardingLayout, {
   OnBoardingLayoutProps,

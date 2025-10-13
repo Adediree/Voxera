@@ -1,10 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useOtp } from "@/utilities/context/otpContext";
-import OtpLayout from "@/components/layouts/otpLayout";
-import AuthLayout from "@/components/layouts/authLayout";
 import { RouteConstant } from "@/utilities/constants/routeConstant";
 
 export default function OtpVerificationPage() {

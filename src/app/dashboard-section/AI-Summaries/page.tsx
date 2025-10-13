@@ -1,24 +1,12 @@
 "use client";
 import "./summaries-page.css";
 
-import AllFeedbackTable from "@/components/content/dashboard/issue/allLetterOfCredit/charts/All-Feedback-Table";
 import { InsightCard } from "@/components/content/dashboard/issue/allLetterOfCredit/charts/InsightCard";
-import KeywordTrendsChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keyword-trends-chart";
-import DynamicKeywordsCloud from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords";
-import PaginatedTable from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords-Topic-Table";
-import KeywordsTopicsCloud from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords-topics-chart";
 import SummariesPieChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Summaries-Piechart";
 import SummariesTrendingThemes from "@/components/content/dashboard/issue/allLetterOfCredit/charts/SummariesTrendingThemes";
-import TrendingKeywords from "@/components/content/dashboard/issue/allLetterOfCredit/charts/TrendingKeywordsTable";
-import { AISummary } from "@/components/layouts/AISummaryHeader";
 import ReadMore from "@/components/layouts/ReadMore";
 import { Summary } from "@/components/layouts/SummaryHeader";
-import {
-  BaseButton,
-  BaseDatePicker,
-  ModernSelect,
-  type ModernSelectOption,
-} from "qucoon-components";
+import { BaseButton } from "qucoon-components";
 
 export default function Feedback() {
   const insightsData = [

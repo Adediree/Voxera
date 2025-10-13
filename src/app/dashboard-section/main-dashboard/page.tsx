@@ -1,6 +1,5 @@
 "use client";
 import FeedbackChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/FeedbackChart";
-import FeedbackSourceChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/FeedbackSourceChart";
 import FeedbackVolumeChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/FeedbackVolumeChart";
 import DynamicKeywordsCloud from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords";
 import OvertimeChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/OvertimeChart";
@@ -8,8 +7,7 @@ import PieChart from "@/components/content/dashboard/issue/allLetterOfCredit/cha
 import PositiveChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/PositiveChart";
 import RecentFeedback from "@/components/content/dashboard/issue/allLetterOfCredit/charts/RecentFeedbackChart";
 import Sentiment from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Sentiment";
-import TopKeywords from "@/components/content/dashboard/issue/allLetterOfCredit/charts/TopKeywords";
-import { BaseInput } from "qucoon-components";
+
 
 export default function Feedback() {
   const feedbackData = [

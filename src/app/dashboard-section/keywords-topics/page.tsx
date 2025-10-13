@@ -3,7 +3,6 @@
 import KeywordTrendsChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keyword-trends-chart";
 import DynamicKeywordsCloud from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords";
 import PaginatedTable from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords-Topic-Table";
-import KeywordsTopicsCloud from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Keywords-topics-chart";
 import TrendingKeywords from "@/components/content/dashboard/issue/allLetterOfCredit/charts/TrendingKeywordsTable";
 import { AISummary } from "@/components/layouts/AISummaryHeader";
 import ReadMore from "@/components/layouts/ReadMore";
