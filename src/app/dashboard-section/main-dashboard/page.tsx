@@ -8,7 +8,6 @@ import PositiveChart from "@/components/content/dashboard/issue/allLetterOfCredi
 import RecentFeedback from "@/components/content/dashboard/issue/allLetterOfCredit/charts/RecentFeedbackChart";
 import Sentiment from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Sentiment";
 
-
 export default function Feedback() {
   const feedbackData = [
     { name: "Google", value: 40 },
@@ -35,7 +34,8 @@ export default function Feedback() {
         className="main-container"
         style={{
           display: "flex",
-          gap: "16px",
+          // justifyContent: "space-between",
+          gap: "48px",
         }}
       >
         <div
@@ -65,7 +65,7 @@ export default function Feedback() {
           <div>
             <Sentiment />
           </div>
-          <DynamicKeywordsCloud/>
+          <DynamicKeywordsCloud />
           <div
             style={{
               display: "flex",
