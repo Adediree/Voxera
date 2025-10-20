@@ -49,33 +49,33 @@ const InitiateSignupForm = (
             response?.responseMessage || "Enrollment initiated successfully!",
           type: "success",
         });
-        showOtp({
-          title: "Verify Your Email",
-          subtitle: `We've sent a 6-digit code to ${request.userEmail}`,
-          onValidOtpEntered: async (otp) => {
-            const completeEnrollmentResponse = await completeEnrollment({
-              otp,
-              userEmail: request.userEmail,
-            }).unwrap();
-            if (BaseUtil.isApiResponseSuccessful(completeEnrollmentResponse)) {
-              BaseToast({
-                message: "Enrollment completed successfully!",
-                type: "success",
-              });
-              router.push(RouteConstant.auth.login.path);
-            }
-            // Complete signup with OTP
-            // dispatch(authStore.mutation.setCompleteEnrollmentFlowPayload({
-            //     ...authState?.completeEnrollmentFlowPayload, ...request,
-            //     otp: otp
-            // }))
-            // router.push(RouteConstant.auth.completeSignup.path)
-          },
-          onResend: async () => {
-            console.log("Otp resend");
-            await resendOtp({ userEmail: values.userEmail });
-          },
-        });
+        // showOtp({
+        //   title: "Verify Your Email",
+        //   subtitle: `We've sent a 6-digit code to ${request.userEmail}`,
+        //   onValidOtpEntered: async (otp) => {
+        //     const completeEnrollmentResponse = await completeEnrollment({
+        //       otp,
+        //       userEmail: request.userEmail,
+        //     }).unwrap();
+        //     if (BaseUtil.isApiResponseSuccessful(completeEnrollmentResponse)) {
+        //       BaseToast({
+        //         message: "Enrollment completed successfully!",
+        //         type: "success",
+        //       });
+        //       router.push(RouteConstant.auth.login.path);
+        //     }
+        //     // Complete signup with OTP
+        //     // dispatch(authStore.mutation.setCompleteEnrollmentFlowPayload({
+        //     //     ...authState?.completeEnrollmentFlowPayload, ...request,
+        //     //     otp: otp
+        //     // }))
+        //     // router.push(RouteConstant.auth.completeSignup.path)
+        //   },
+        //   onResend: async () => {
+        //     console.log("Otp resend");
+        //     await resendOtp({ userEmail: values.userEmail });
+        //   },
+        // });
       }
     } catch (err: any) {
       console.error("Enrollment initiation failed:", err);

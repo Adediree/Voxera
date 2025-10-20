@@ -1,19 +1,15 @@
 export type InitiateEnrollmentRequest = {
-    userEmail: string,
-    userPassword: string,
-    // userCountryCode?: string,
-    userFirstname: string,
-    userLastname: string,
-    // userMiddlename?: string,
-    // userPhone?: string
-}
+  userEmail: string;
+  userName: string;
+  userPassword: string;
+  userRoleId: number;
+  userStatus: string;
+};
 
 export const initiateEnrollmentRequestInit: InitiateEnrollmentRequest = {
-    userEmail: "",
-    userPassword: "",
-    // userCountryCode: "234",
-    userFirstname: "",
-    userLastname: "",
-    // userMiddleName: "",
-    // userPhone: ""
-}
+  userEmail: "",
+  userName: "",
+  userPassword: "",
+  userRoleId: 0,
+  userStatus: "",
+};
