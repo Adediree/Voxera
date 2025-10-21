@@ -1,41 +1,24 @@
 "use client";
-import {
-  BaseButton,
-  BaseCheckbox,
-  BaseInput,
-  BasePhoneNumberInput,
-} from "qucoon-components";
+
+import { BaseButton, BaseCheckbox, BaseInput } from "qucoon-components";
 import {
   InitiateEnrollmentRequest,
   initiateEnrollmentRequestInit,
 } from "@/models/requests/authentication/initiateEnrollmentRequest";
 import { AuthenticationValidation } from "@/models/validations/authenticationValidation";
 import { useFormik } from "formik";
-import { completeEnrollmentRequestInit } from "@/models/requests/authentication/completeEnrollmentRequest";
-import {
-  useCompleteEnrollmentMutation,
-  useInitiateEnrollmentMutation,
-  useResendOtpMutation,
-} from "@/services/authenticationService";
+import { useInitiateEnrollmentMutation } from "@/services/authenticationService";
 import { useRouter } from "next/navigation";
 import BaseToast from "@/components/ui/toast/BaseToast";
-import { useOtp } from "@/utilities/context/otpContext";
 import { BaseUtil } from "@/utilities/baseUtil";
 import { RouteConstant } from "@/utilities/constants/routeConstant";
 
-const InitiateSignupForm = (
-  props: React.DetailedHTMLProps<
-    React.FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
-  >
-) => {
+const InitiateSignupForm = () => {
   const router = useRouter();
   const [initiateEnrollment, { isLoading }] = useInitiateEnrollmentMutation();
-  const [completeEnrollment] = useCompleteEnrollmentMutation();
-  const [resendOtp] = useResendOtpMutation();
-  const { showOtp } = useOtp();
 
-  const handleSignUp = async (values: typeof initialValues) => {
+  // ✅ Form submission handler
+  const handleSignUp = async (values: typeof initiateEnrollmentRequestInit) => {
     try {
       const request: InitiateEnrollmentRequest = {
         ...initiateEnrollmentRequestInit,
@@ -43,40 +26,16 @@ const InitiateSignupForm = (
       };
 
       const response = await initiateEnrollment(request).unwrap();
+
       if (BaseUtil.isApiResponseSuccessful(response)) {
         BaseToast({
           message:
             response?.responseMessage || "Enrollment initiated successfully!",
           type: "success",
         });
+
+        // ✅ Redirect to complete signup after success
         router.push(RouteConstant.auth.completeSignup.path);
-        // showOtp({
-        //   title: "Verify Your Email",
-        //   subtitle: `We've sent a 6-digit code to ${request.userEmail}`,
-        //   onValidOtpEntered: async (otp) => {
-        //     const completeEnrollmentResponse = await completeEnrollment({
-        //       otp,
-        //       userEmail: request.userEmail,
-        //     }).unwrap();
-        //     if (BaseUtil.isApiResponseSuccessful(completeEnrollmentResponse)) {
-        //       BaseToast({
-        //         message: "Enrollment completed successfully!",
-        //         type: "success",
-        //       });
-        //       router.push(RouteConstant.auth.login.path);
-        //     }
-        //     // Complete signup with OTP
-        //     // dispatch(authStore.mutation.setCompleteEnrollmentFlowPayload({
-        //     //     ...authState?.completeEnrollmentFlowPayload, ...request,
-        //     //     otp: otp
-        //     // }))
-        //     // router.push(RouteConstant.auth.completeSignup.path)
-        //   },
-        //   onResend: async () => {
-        //     console.log("Otp resend");
-        //     await resendOtp({ userEmail: values.userEmail });
-        //   },
-        // });
       } else {
         BaseToast({
           message: response?.responseMessage || "Signup failed.",
@@ -85,14 +44,16 @@ const InitiateSignupForm = (
       }
     } catch (err: any) {
       console.error("Enrollment initiation failed:", err);
+      BaseToast({
+        message: "An error occurred while signing up.",
+        type: "error",
+      });
     }
   };
-  const initialValues = {
-    ...initiateEnrollmentRequestInit,
-    ...completeEnrollmentRequestInit,
-  };
+
+  // ✅ Initial values and formik setup
   const formik = useFormik({
-    initialValues,
+    initialValues: initiateEnrollmentRequestInit,
     onSubmit: handleSignUp,
     validationSchema: AuthenticationValidation.initiateEnrollment,
   });
@@ -103,22 +64,21 @@ const InitiateSignupForm = (
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
-        // alignItems: "center",
-        // width:"100vw"
       }}
     >
       <form
-        className={"form"}
+        className="form"
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           width: "100%",
         }}
-        {...props}
+        onSubmit={formik.handleSubmit}
       >
+        {/* Header */}
         <div
-          className={"form-input-container"}
+          className="form-input-container"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -136,47 +96,38 @@ const InitiateSignupForm = (
               paddingBottom: "8px",
             }}
           >
-            <img src="/Voxera-Logo-Black-1.svg" />
+            <img src="/Voxera-Logo-Black-1.svg" alt="Logo" />
             <p>
               Sign up to analyze reviews, benchmark against competitors, and
               uncover market trends that drive business growth.
             </p>
           </div>
-          <div style={{ display: "flex", gap: "24px" }}>
-            <BaseButton
-              text="Sign up with Google"
-              textStyle={{ color: "black" }}
-              style={{
-                backgroundColor: "white",
-                border: "1px solid",
-                borderColor: "#D0D5DD",
-              }}
-            />
-            <BaseButton
-              text="Sign up with Facebook"
-              textStyle={{ color: "black" }}
-              style={{
-                backgroundColor: "white",
-                border: "1px solid",
-                borderColor: "#D0D5DD",
-              }}
-            />
-          </div>
-          <div>
-            <p>Or</p>
-          </div>
-          <div className={"form-input-flex-group"}></div>
+
+          {/* Email Input */}
           <div>
             <BaseInput
               label="Email Address"
-              name={"userEmail"}
+              name="userEmail"
               inputProps={{ placeholder: "Email address" }}
               formik={formik}
               style={{ width: "385px" }}
             />
+            {formik.touched.userEmail && formik.errors.userEmail && (
+              <div style={{ color: "red", fontSize: "0.8rem" }}>
+                {formik.errors.userEmail}
+              </div>
+            )}
           </div>
-          <div style={{ display: "flex", gap: "2px", paddingTop: "24px" }}>
-            <BaseCheckbox />
+
+          {/* Terms Checkbox */}
+          <div style={{ display: "flex", gap: "4px", paddingTop: "24px" }}>
+            <BaseCheckbox
+              name="termsAccepted"
+              checked={formik.values.termsAccepted}
+              onChange={(e) =>
+                formik.setFieldValue("termsAccepted", e.target.checked)
+              }
+            />
             <h3
               style={{
                 fontSize: "0.9rem",
@@ -189,39 +140,41 @@ const InitiateSignupForm = (
             </h3>
           </div>
         </div>
-        <div className={"form-input-container"}>
-          <div>
-            <BaseButton
-              text={"Sign Up"}
-              type="submit"
-              // onClick={() => formik.handleSubmit()}
-              isLoading={isLoading}
-              // onClick={() =>
-              //   router.push(RouteConstant.auth.completeSignup.path)
-              // }
-              textStyle={{ color: "black" }}
-              style={{ width: "160px", backgroundColor: "#F44A0E54" }}
-            />
-          </div>
-          <div
-            style={{ display: "flex", gap: "4px", justifyContent: "center" }}
-          >
-            <p>Already have an account?</p>
-            <BaseButton
-              text="Log in"
-              textStyle={{
-                color: "#EA4335",
-                fontFamily: "Poppins",
-                fontSize: "0.9rem",
-              }}
-              style={{
-                backgroundColor: "white",
-                border: "none",
-                padding: "0px",
-                // borderColor: "#D0D5DD",
-              }}
-            />
-          </div>
+
+        {/* Submit Button */}
+        <div className="form-input-container" style={{ marginTop: "16px" }}>
+          <BaseButton
+            text="Sign Up"
+            type="submit"
+            isLoading={isLoading}
+            disabled={!formik.values.termsAccepted}
+            textStyle={{ color: "black" }}
+            style={{
+              width: "160px",
+              backgroundColor: "#F44A0E54",
+              opacity: formik.values.termsAccepted ? 1 : 0.6,
+              cursor: formik.values.termsAccepted ? "pointer" : "not-allowed",
+            }}
+          />
+        </div>
+
+        {/* Already Have Account */}
+        <div style={{ display: "flex", gap: "4px", justifyContent: "center" }}>
+          <p>Already have an account?</p>
+          <BaseButton
+            text="Log in"
+            onClick={() => router.push(RouteConstant.auth.login.path)}
+            textStyle={{
+              color: "#EA4335",
+              fontFamily: "Poppins",
+              fontSize: "0.9rem",
+            }}
+            style={{
+              backgroundColor: "white",
+              border: "none",
+              padding: "0px",
+            }}
+          />
         </div>
       </form>
     </div>
