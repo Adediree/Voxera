@@ -49,6 +49,7 @@ const InitiateSignupForm = (
             response?.responseMessage || "Enrollment initiated successfully!",
           type: "success",
         });
+        router.push(RouteConstant.auth.completeSignup.path);
         // showOtp({
         //   title: "Verify Your Email",
         //   subtitle: `We've sent a 6-digit code to ${request.userEmail}`,
@@ -76,6 +77,11 @@ const InitiateSignupForm = (
         //     await resendOtp({ userEmail: values.userEmail });
         //   },
         // });
+      } else {
+        BaseToast({
+          message: response?.responseMessage || "Signup failed.",
+          type: "error",
+        });
       }
     } catch (err: any) {
       console.error("Enrollment initiation failed:", err);
@@ -187,12 +193,12 @@ const InitiateSignupForm = (
           <div>
             <BaseButton
               text={"Sign Up"}
-              // type="submit"
+              type="submit"
               // onClick={() => formik.handleSubmit()}
               isLoading={isLoading}
-              onClick={() =>
-                router.push(RouteConstant.auth.completeSignup.path)
-              }
+              // onClick={() =>
+              //   router.push(RouteConstant.auth.completeSignup.path)
+              // }
               textStyle={{ color: "black" }}
               style={{ width: "160px", backgroundColor: "#F44A0E54" }}
             />
@@ -203,7 +209,11 @@ const InitiateSignupForm = (
             <p>Already have an account?</p>
             <BaseButton
               text="Log in"
-              textStyle={{ color: "#EA4335", fontFamily: "Poppins", fontSize: "0.9rem" }}
+              textStyle={{
+                color: "#EA4335",
+                fontFamily: "Poppins",
+                fontSize: "0.9rem",
+              }}
               style={{
                 backgroundColor: "white",
                 border: "none",
