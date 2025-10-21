@@ -173,11 +173,23 @@ const InitiateSignupForm = (
           </div>
         </div>
 
-        <div className="form-input-container">
+        <div
+          className="form-input-container"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            gap: "8px",
+            marginTop: "20px",
+          }}
+        >
           <BaseButton
             text="Sign Up"
             type="submit"
             isLoading={isLoading}
+            onClick={() => formik.handleSubmit()}
             textStyle={{ color: "black" }}
             style={{ width: "160px", backgroundColor: "#F44A0E54" }}
           />
