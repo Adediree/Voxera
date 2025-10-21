@@ -2,7 +2,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import "@/components/ui/form/form.css";
 import { BaseButton, BaseInput } from "qucoon-components";
-import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores";
 import { useEffect } from "react";
@@ -20,50 +19,47 @@ const CompleteSignupForm = () => {
   const [completeEnrollment, { isLoading }] = useCompleteEnrollmentMutation();
   const authState = useSelector((state: RootState) => state.auth);
   const searchParams = useSearchParams();
-  // Get the 'token' parameter from the URL
+
+  // ✅ Get the 'token' parameter from the URL
   const token = searchParams.get("token");
 
+  // ✅ Make sure this function is properly scoped and closed
   const handleCompleteEnrollment = async (token: string) => {
     let isEnrollmentSuccessful = false;
-    const response = await completeEnrollment({ token }).unwrap();
-    if (BaseUtil.isApiResponseSuccessful(response)) {
+
+    try {
+      const response = await completeEnrollment({ token }).unwrap();
+      if (BaseUtil.isApiResponseSuccessful(response)) {
+        BaseToast({
+          message: response?.responseMessage,
+          type: "success",
+        });
+        isEnrollmentSuccessful = true;
+      }
+    } catch (error) {
+      console.error("Error completing enrollment:", error);
       BaseToast({
-        message: response?.responseMessage,
-        type: "success",
+        message: "Enrollment failed. Please try again.",
+        type: "error",
       });
     }
-    if (isEnrollmentSuccessful) {
-      router.push(RouteConstant.auth.verifyOtp.path); // or your success page
-    } else {
-      router.push(RouteConstant.auth.signup.path); // fallback to signup
-    }
 
-    // const action = await dispatch(authentication.action.completeEnrollment(request));
-    // const response = action.payload as CompleteEnrollmentResponse;
-    // if (response.responseCode == BaseEnum.RESPONSE_CODE_SUCCESS) {
-    //     BaseToast({
-    //         message: response?.responseMessage,
-    //         type: 'success',
-    //     });
-    //     if (response?.token) {
-    //         navigate(RouteConstant.dashboard.home.path)
-    //     }
-    //     router.push(RouteConstant.authentication.login.path)
-    // }
+    if (isEnrollmentSuccessful) {
+      router.push(RouteConstant.auth.verifyOtp.path);
+    } else {
+      router.push(RouteConstant.auth.signup.path);
+    }
   };
 
   useEffect(() => {
     if (token) {
       console.log("Token:", token);
       handleCompleteEnrollment(token);
-
-      // dispatch(authStore.mutation.setToken(`Bearer ${token}`))
-
-      // Perform actions with the token (e.g., send it to the backend for validation)
+      // dispatch(authStore.mutation.setToken(`Bearer ${token}`));
     }
   }, [token]);
 
-  if (isLoading === true) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -91,3 +87,5 @@ const CompleteSignupForm = () => {
     </div>
   );
 };
+
+export default CompleteSignupForm;
