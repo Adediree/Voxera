@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import "@/components/ui/form/form.css";
+import styles from "./completeSignup.module.css"; // ✅ use CSS module
 import { BaseButton, BaseInput } from "qucoon-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores";
@@ -20,10 +20,8 @@ const CompleteSignupForm = () => {
   const authState = useSelector((state: RootState) => state.auth);
   const searchParams = useSearchParams();
 
-  // ✅ Get the 'token' parameter from the URL
   const token = searchParams.get("token");
 
-  // ✅ Make sure this function is properly scoped and closed
   const handleCompleteEnrollment = async (token: string) => {
     let isEnrollmentSuccessful = false;
 
@@ -55,7 +53,6 @@ const CompleteSignupForm = () => {
     if (token) {
       console.log("Token:", token);
       handleCompleteEnrollment(token);
-      // dispatch(authStore.mutation.setToken(`Bearer ${token}`));
     }
   }, [token]);
 
@@ -64,8 +61,8 @@ const CompleteSignupForm = () => {
   }
 
   return (
-    <div className="otp-page-wrapper">
-      <div className="otp-content">
+    <div className={styles.otpPageWrapper}>
+      <div className={styles.otpContent}>
         <img src="/Email-Icon.svg" width={60} alt="Email Icon" />
         <h1>Confirmation Email Sent!</h1>
         <p>
@@ -75,10 +72,10 @@ const CompleteSignupForm = () => {
         </p>
       </div>
 
-      <div className="otp-buttons">
-        <button className="otp-link-button">Resend email</button>
+      <div className={styles.otpButtons}>
+        <button className={styles.otpLinkButton}>Resend email</button>
         <button
-          className="otp-link-button"
+          className={styles.otpLinkButton}
           onClick={() => router.push(RouteConstant.auth.verifyOtp.path)}
         >
           Go to mail

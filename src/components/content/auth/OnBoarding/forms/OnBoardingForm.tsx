@@ -14,6 +14,7 @@ import {
   initialIndustries,
   initialRoles,
 } from "../mockdata/onboardingMockData";
+import styles from "./OnBoardingForm.module.css"; // ✅ import CSS module
 
 const OnBoardingForm = (
   props: React.DetailedHTMLProps<
@@ -21,29 +22,20 @@ const OnBoardingForm = (
     HTMLFormElement
   >
 ) => {
-  type Role = {
-    id: number;
-    name: string;
-  };
-
-  type Industry = {
-    id: number;
-    name: string;
-  };
-
-  type Channel = {
-    id: number;
-    name: string;
-  };
+  type Role = { id: number; name: string };
+  type Industry = { id: number; name: string };
+  type Channel = { id: number; name: string };
 
   const router = useRouter();
   const initialValues = { ...changePasswordRequestInit };
   const [changePassword, { isLoading }] = useChangePasswordMutation();
+
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [roles, setRoles] = useState<Role[]>(initialRoles);
   const [industries, setIndustries] = useState<Industry[]>(initialIndustries);
   const [channels, setChannels] = useState<Channel[]>(initialChannels);
+
   const [activeRole, setActiveRole] = useState<number | null>(null);
   const [activeIndustry, setActiveIndustry] = useState<number | null>(null);
   const [activeChannel, setActiveChannel] = useState<number | null>(null);
@@ -59,6 +51,7 @@ const OnBoardingForm = (
       router.push(RouteConstant.auth.login.path);
     }
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit: handleSubmit,
@@ -66,30 +59,17 @@ const OnBoardingForm = (
   });
 
   return (
-    <div
-      style={{
-        // maxWidth: "700px",
-        // paddingLeft: "40px",
-        // paddingRight: "40px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        // border: "2px solid",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-        <h1 style={{ fontSize: "1.7rem", color: "#2A3039" }}>
-          Let's Get You Set Up
-        </h1>
-        <p style={{ fontSize: "0.9rem", color: "#4B5563" }}>
-          Just a few details to tailor Voxera to your business.
-        </p>
+    <div className={styles.formWrapper}>
+      <div className={styles.headerSection}>
+        <h1>Let's Get You Set Up</h1>
+        <p>Just a few details to tailor Voxera to your business.</p>
       </div>
-      <div style={{ display: "flex", gap: "16px" }}>
+
+      <div className={styles.inputRow}>
         <BaseInput
           label="Full Name"
           value={name}
-          name={"name"}
+          name="name"
           inputProps={{ placeholder: "Michael Fagbayibo" }}
           formik={formik}
           style={{ fontFamily: "Poppins" }}
@@ -98,30 +78,22 @@ const OnBoardingForm = (
         <BaseInput
           label="Company Name"
           value={company}
-          name={"name"}
+          name="name"
           inputProps={{ placeholder: "Voxera Industry" }}
           formik={formik}
           style={{ fontFamily: "Poppins" }}
           onChange={(e) => setCompany(e.target.value)}
         />
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <p style={{ fontSize: "1rem", fontWeight: "700", color: "#4B5563" }}>
-          Role or Position
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
+
+      {/* Role Section */}
+      <div className={styles.section}>
+        <p className={styles.sectionTitle}>Role or Position</p>
+        <div className={styles.buttonGroup}>
           {roles.map((role) => (
             <BaseButton
               key={role.id}
               text={role.name}
-              // type="submit"
-              // onClick={() => formik.handleSubmit()}
               isLoading={isLoading}
               textStyle={{
                 color: activeRole === role.id ? "white" : "black",
@@ -135,23 +107,15 @@ const OnBoardingForm = (
           ))}
         </div>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <p style={{ fontSize: "1rem", fontWeight: "700", color: "#4B5563" }}>
-          Industry
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
+
+      {/* Industry Section */}
+      <div className={styles.section}>
+        <p className={styles.sectionTitle}>Industry</p>
+        <div className={styles.buttonGroup}>
           {industries.map((industry) => (
             <BaseButton
               key={industry.id}
               text={industry.name}
-              // type="submit"
-              // onClick={() => formik.handleSubmit()}
               isLoading={isLoading}
               textStyle={{
                 color: activeIndustry === industry.id ? "white" : "black",
@@ -165,31 +129,21 @@ const OnBoardingForm = (
           ))}
         </div>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          <p style={{ fontSize: "1rem", fontWeight: "700", color: "#4B5563" }}>
-            Primary Feedback Channels
-          </p>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-            <img src="/info.svg" />
-            <p style={{ fontSize: "0.9rem", color: "#4B5563" }}>
-              You can select multiple boxes
-            </p>
+
+      {/* Channel Section */}
+      <div className={styles.section}>
+        <div className={styles.channelHeader}>
+          <p className={styles.sectionTitle}>Primary Feedback Channels</p>
+          <div className={styles.infoRow}>
+            <img src="/info.svg" alt="Info" />
+            <p>You can select multiple boxes</p>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
+        <div className={styles.buttonGroup}>
           {channels.map((channel) => (
             <BaseButton
               key={channel.id}
               text={channel.name}
-              // type="submit"
-              // onClick={() => formik.handleSubmit()}
               isLoading={isLoading}
               textStyle={{
                 color: activeChannel === channel.id ? "white" : "black",
@@ -203,23 +157,16 @@ const OnBoardingForm = (
           ))}
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          paddingTop: "8px",
-        }}
-      >
+
+      {/* Button Section */}
+      <div className={styles.buttonRight}>
         <BaseButton
-          text={"Next"}
-          // type="submit"
-          // onClick={() => formik.handleSubmit()}
+          text="Next"
           isLoading={isLoading}
           style={{ backgroundColor: "#F44A0E" }}
           onClick={() =>
             router.push(RouteConstant.onBoarding.completeOnBoarding.path)
           }
-          // style={{ width: "160px" }}
         />
       </div>
     </div>

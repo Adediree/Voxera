@@ -1,0 +1,54 @@
+.overallContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fafbfc;
+  padding: 24px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.container4 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.filterBar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  background-color: #d9d9d945;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 4px;
+}
+
+.selectStyle {
+  font-size: 16px;
+  color: #667085;
+  border: none;
+}

@@ -1,7 +1,6 @@
 import "../form.css"
-import BaseButton from "@/component/button/BaseButton.tsx";
-import {BaseOtpInput} from "@/component/input/BaseOtpInput.tsx";
-import BaseToast from "@/component/toast/BaseToast.tsx";
+import BaseToast from "@/components/ui/toast/BaseToast";
+import { BaseButton, BaseOtpInput } from "qucoon-components/dist/types/components";
 import {useState} from "react";
 
 

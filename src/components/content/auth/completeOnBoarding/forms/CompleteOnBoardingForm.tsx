@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import BaseToast from "@/components/ui/toast/BaseToast";
 import { useState } from "react";
 import { initialCases } from "../../OnBoarding/mockdata/onboardingMockData";
+import styles from "./CompleteOnBoardingForm.module.css";
 
 const CompleteOnBoardingForm = (
   props: React.DetailedHTMLProps<
@@ -34,9 +35,9 @@ const CompleteOnBoardingForm = (
   const [cases, setCases] = useState<Case[]>(initialCases);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [checkedItems, setCheckedItems] = useState<{
-    [key: number]: boolean;
-  }>({});
+  const [checkedItems, setCheckedItems] = useState<{ [key: number]: boolean }>(
+    {}
+  );
 
   const handleSubmit = async () => {
     const request = { ...formik.values };
@@ -49,6 +50,7 @@ const CompleteOnBoardingForm = (
       router.push(RouteConstant.auth.login.path);
     }
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit: handleSubmit,
@@ -63,75 +65,47 @@ const CompleteOnBoardingForm = (
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        // border: "2px solid",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          // border: "2px solid",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          <h1 style={{ fontSize: "1.7rem", color: "#2A3039" }}>
-            Customize your dashboard
-          </h1>
-          <p style={{ fontSize: "0.9rem", color: "#4B5563" }}>
+    <div className={styles.formContainer}>
+      <div className={styles.section}>
+        <div className={styles.titleBlock}>
+          <h1 className={styles.heading}>Customize your dashboard</h1>
+          <p className={styles.subheading}>
             Just a few details to tailor Voxera to your business.
           </p>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <p
-              style={{ fontSize: "1rem", fontWeight: "700", color: "#4B5563" }}
-            >
-              Expected Use Cases
-            </p>
-            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <img src="/info.svg" />
-              <p style={{ fontSize: "0.9rem", color: "#4B5563" }}>
-                You can select multiple boxes
-              </p>
+
+        <div className={styles.sectionBlock}>
+          <div className={styles.labelBlock}>
+            <p className={styles.label}>Expected Use Cases</p>
+            <div className={styles.infoRow}>
+              <img src="/info.svg" alt="info" />
+              <p className={styles.infoText}>You can select multiple boxes</p>
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+
+          <div className={styles.checkboxGroup}>
             {cases.map((item) => (
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
-              >
+              <div className={styles.checkboxRow} key={item.id}>
                 <BaseCheckbox
                   checked={!!checkedItems[item.id]}
                   onChange={() => toggleCheckbox(item.id)}
                 />
-                <p
-                  key={item.id}
-                  style={{ fontSize: "0.9rem", color: "#4B5563" }}
-                >
-                  {item.name}
-                </p>
+                <p className={styles.checkboxLabel}>{item.name}</p>
               </div>
             ))}
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <p style={{ fontSize: "1rem", fontWeight: "700", color: "#4B5563" }}>
-            Protect Your Account
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+
+        <div className={styles.sectionBlock}>
+          <p className={styles.label}>Protect Your Account</p>
+          <div className={styles.inputGroup}>
             <BaseInput
               label="Full Name"
               value={password}
               name={"userEmail"}
               inputProps={{ placeholder: "Enter Password" }}
               formik={formik}
-              style={{ width: "385px", fontFamily: "Poppins" }}
+              className={styles.inputField}
               onChange={(e) => setPassword(e.target.value)}
             />
             <BaseInput
@@ -140,27 +114,18 @@ const CompleteOnBoardingForm = (
               name={"userEmail"}
               inputProps={{ placeholder: "Confirm Password" }}
               formik={formik}
-              style={{ width: "385px", fontFamily: "Poppins" }}
+              className={styles.inputField}
               onChange={(e) => setConfirm(e.target.value)}
             />
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          paddingTop: "8px",
-        }}
-      >
+
+      <div className={styles.buttonContainer}>
         <BaseButton
           text={"Complete"}
-          // type="submit"
-          // onClick={() => formik.handleSubmit()}
-          // isLoading={isLoading}
           style={{ backgroundColor: "#F44A0E" }}
           onClick={() => router.push(RouteConstant.auth.feedback.path)}
-          // style={{ width: "160px" }}
         />
       </div>
     </div>

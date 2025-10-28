@@ -11,112 +11,35 @@ import {
   ModernSelect,
   type ModernSelectOption,
 } from "qucoon-components";
+import styles from "./KeywordTopics.module.css";
 
-export default function Feedback() {
+export default function KeywordTopics() {
   const topKeywordsOptions: ModernSelectOption[] = [
-    {
-      label: "Delivery Speed",
-      value: "Delivery Speed",
-    },
-
-    {
-      label: "Customer Service",
-      value: "Customer Service",
-    },
-
-    {
-      label: "Food Quality",
-      value: "Food Quality",
-    },
-    {
-      label: "Pricing",
-      value: "Pricing",
-    },
+    { label: "Delivery Speed", value: "Delivery Speed" },
+    { label: "Customer Service", value: "Customer Service" },
+    { label: "Food Quality", value: "Food Quality" },
+    { label: "Pricing", value: "Pricing" },
   ];
 
   return (
-    <div
-      className="overall-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        backgroundColor: "#FAFBFC",
-        padding: "24px",
-      }}
-    >
-      <div
-        className="container-1"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
+    <div className={styles.overallContainer}>
+      <div className={styles.container1}>
         <div>
-          <p
-            style={{ fontSize: "1.25rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            Keyword & Topics
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
+          <p className={styles.heading}>Keyword & Topics</p>
+          <p className={styles.subheading}>
             Track trending topics and keywords shaping customer feedback.
           </p>
         </div>
         <div>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
-            All data synced 10 mins ago
-          </p>
+          <p className={styles.synced}>All data synced 10 mins ago</p>
         </div>
       </div>
-      <div
-        className="container-2"
-        style={{
-          display: "flex",
-          gap: "10px",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          className="top-mentioned-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            // gap: "40px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "554px",
-            height: "200px",
-          }}
-        >
-          <div
-            className="top-mentioned-header"
-            style={{ display: "flex", alignItems: "center", gap: "6px" }}
-          >
+
+      <div className={styles.container2}>
+        <div className={styles.topMentionedLeft}>
+          <div className={styles.topMentionedHeader}>
             <img src="/keyword-icon.svg" />
-            <p
-              className="review-title"
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "500",
-                color: "#4B5563",
-              }}
-            >
-              Top Mentioned Topics
-            </p>
+            <p className={styles.reviewTitle}>Top Mentioned Topics</p>
           </div>
           <div>
             <DynamicKeywordsCloud
@@ -129,135 +52,41 @@ export default function Feedback() {
                 "Attendance",
               ]}
             />
-            {/* <KeywordsTopicsCloud /> */}
           </div>
         </div>
-        <div
-          className="top-mentioned-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "400px",
-            height: "200px",
-          }}
-        >
-          <div
-            className="top-mentioned-header"
-            style={{ display: "flex", alignItems: "center", gap: "6px" }}
-          >
+
+        <div className={styles.topMentionedRight}>
+          <div className={styles.topMentionedHeader}>
             <img src="/keyword-icon.svg" />
-            <p
-              className="review-title"
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "500",
-                color: "#4B5563",
-              }}
-            >
-              Trending 5 Keywords
-            </p>
+            <p className={styles.reviewTitle}>Trending 5 Keywords</p>
           </div>
           <div>
             <TrendingKeywords feedbacks={[]} />
           </div>
         </div>
       </div>
-      <div
-        className="container-3"
-        style={{
-          display: "flex",
-          gap: "10px",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          className="KeywordTrendsChart"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            // gap: "40px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "580px",
-            height: "265px",
-            minHeight: "220px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: "4px",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "0.9rem",
-                fontWeight: "600",
-                color: "#4B5563",
-              }}
-            >
-              Keywords Trends Over Time
-            </p>
-            <div
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                // justifyContent: "space-between",
-              }}
-            >
-              {/* <p style={{ width: "150px" }}>This Month</p> */}
-              <BaseDatePicker/>
+
+      <div className={styles.container3}>
+        <div className={styles.keywordTrendsChart}>
+          <div className={styles.keywordTrendsHeader}>
+            <p className={styles.chartTitle}>Keywords Trends Over Time</p>
+            <div className={styles.filterGroup}>
+              <BaseDatePicker />
               <ModernSelect
                 placeholderLabel="Keywords"
-                // onOptionSelect={}
                 selectOptions={topKeywordsOptions}
                 size="small"
-                // label="Top Keywords"
                 style={{ fontSize: "16px", color: "#667085", border: "none" }}
               />
             </div>
           </div>
           <KeywordTrendsChart />
         </div>
-        <div
-          className="ai-summary-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "8px",
-            gap: "12px",
-            width: "387px",
-            height: "266px",
-            // border: "1px solid",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+
+        <div className={styles.aiSummaryContainer}>
+          <div className={styles.aiSummaryHeader}>
             <AISummary />
-            <p
-              style={{
-                fontSize: "1rem",
-                fontWeight: "600",
-                color: "#474747",
-              }}
-            >
-              Delivery Speed
-            </p>
+            <p className={styles.aiSummaryTitle}>Delivery Speed</p>
           </div>
           <ReadMore
             text="Mentions of Delivery Speed rose by 40% this week, with most feedback highlighting longer wait times during peak hours. While a few customers praised timely service during off-peak periods, 62% of mentions were negative, linking delays to frustration and lower ratings. Addressing staffing or logistics during high-demand windows could reduce complaints and improve satisfaction by up to 10%."
@@ -265,36 +94,10 @@ export default function Feedback() {
           />
         </div>
       </div>
-      <div
-        className="container-4"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "32px",
-          padding: "16px",
-          backgroundColor: "white",
-          borderRadius: "6px",
-          // width: "554px",
-          // height: "200px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "4px",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "0.9rem",
-              fontWeight: "600",
-              color: "#4B5563",
-            }}
-          >
-            Keywords Trends Over Time
-          </p>
+
+      <div className={styles.container4}>
+        <div className={styles.tableHeader}>
+          <p className={styles.chartTitle}>Keywords Trends Over Time</p>
           <p style={{ width: "150px" }}>This Month</p>
         </div>
         <PaginatedTable feedbacks={[]} rowsPerPage={10} />

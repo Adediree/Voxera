@@ -1,5 +1,5 @@
 "use client";
-import "./summaries-page.css";
+import styles from "./summariesPage.module.css";
 
 import { InsightCard } from "@/components/content/dashboard/issue/allLetterOfCredit/charts/InsightCard";
 import SummariesPieChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Summaries-Piechart";
@@ -11,21 +11,9 @@ import { BaseButton } from "qucoon-components";
 export default function Feedback() {
   const insightsData = [
     { icon: "/total-feedback-icon.svg", value: 320, label: "Total Feedback" },
-    {
-      icon: "/summaries-positive-icon.svg",
-      value: "78%",
-      label: "Positive",
-    },
-    {
-      icon: "/summaries-negative-icon.svg",
-      value: "8%",
-      label: "Negative",
-    },
-    {
-      icon: "/summaries-star-icon.svg",
-      value: "4.2/5",
-      label: "Avg Rating",
-    },
+    { icon: "/summaries-positive-icon.svg", value: "78%", label: "Positive" },
+    { icon: "/summaries-negative-icon.svg", value: "8%", label: "Negative" },
+    { icon: "/summaries-star-icon.svg", value: "4.2/5", label: "Avg Rating" },
   ];
 
   const feedbackData = [
@@ -48,55 +36,20 @@ export default function Feedback() {
   ];
 
   return (
-    <div
-      className="overall-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        height: "100%",
-        backgroundColor: "#FAFBFC",
-        padding: "24px",
-      }}
-    >
-      <div
-        className="container-1"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
+    <div className={styles.overallContainer}>
+      <div className={styles.container1}>
         <div>
-          <p
-            style={{ fontSize: "1.25rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            AI Summaries
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
+          <p className={styles.title}>AI Summaries</p>
+          <p className={styles.subtitle}>
             Get instant insights from every review
           </p>
         </div>
         <div>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
-            All data synced 10 mins ago
-          </p>
+          <p className={styles.subtitle}>All data synced 10 mins ago</p>
         </div>
       </div>
 
-      <div className="summaries-container-2">
+      <div className={styles.summariesContainer2}>
         {insightsData.map((item, index) => (
           <InsightCard
             key={index}
@@ -106,32 +59,24 @@ export default function Feedback() {
           />
         ))}
       </div>
-      <div className="summaries-container-3">
+
+      <div className={styles.summariesContainer3}>
         <div>
-          <p
-            style={{ fontSize: "1.25rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            Sentiment Overview
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
+          <p className={styles.title}>Sentiment Overview</p>
+          <p className={styles.subtitle}>
             Sentiment distribution from all sources (15-days) window
           </p>
         </div>
-        <div className="summaries-chart-section">
-          <div className="summaries-chart">
+        <div className={styles.summariesChartSection}>
+          <div className={styles.summariesChart}>
             <SummariesPieChart data={feedbackData} title="Feedback Sources" />
             <SummariesTrendingThemes title="Trending Themes" themes={themes} />
           </div>
         </div>
       </div>
-      <div className="summaries-container-4">
-        <div className="summary-div">
+
+      <div className={styles.summariesContainer4}>
+        <div className={styles.summaryDiv}>
           <Summary />
           <BaseButton
             text="Export As"
@@ -151,34 +96,16 @@ export default function Feedback() {
                 Customer sentiment in the past 15 days remains strongly
                 positive, reflecting a generally satisfying user experience. A
                 majority of reviews emphasize{" "}
-                <span
-                  style={{
-                    fontSize: "0.875rem",
-                    fontWeight: "700",
-                    color: "#F44A0E",
-                  }}
-                >
+                <span className={styles.highlightRedLarge}>
                   product quality, ease of use
                 </span>
                 , and{" "}
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: "700",
-                    color: "#F44A0E",
-                  }}
-                >
+                <span className={styles.highlightRedSmall}>
                   responsive support
                 </span>
                 , contributing to a consistent rise in satisfaction levels. Many
                 users described their experiences as{" "}
-                <span
-                  style={{
-                    fontSize: "0.875rem",
-                    fontWeight: "700",
-                    color: "#F44A0E",
-                  }}
-                >
+                <span className={styles.highlightRedLarge}>
                   “smooth,” “reliable,” and “worth the value,”
                 </span>{" "}
                 reinforcing trust and loyalty toward the brand.

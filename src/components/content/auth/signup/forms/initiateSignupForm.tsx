@@ -1,4 +1,5 @@
 "use client";
+import styles from "./form.module.css";
 import {
   BaseButton,
   BaseCheckbox,
@@ -50,33 +51,6 @@ const InitiateSignupForm = (
           type: "success",
         });
         router.push(RouteConstant.auth.completeSignup.path);
-        // showOtp({
-        //   title: "Verify Your Email",
-        //   subtitle: `We've sent a 6-digit code to ${request.userEmail}`,
-        //   onValidOtpEntered: async (otp) => {
-        //     const completeEnrollmentResponse = await completeEnrollment({
-        //       otp,
-        //       userEmail: request.userEmail,
-        //     }).unwrap();
-        //     if (BaseUtil.isApiResponseSuccessful(completeEnrollmentResponse)) {
-        //       BaseToast({
-        //         message: "Enrollment completed successfully!",
-        //         type: "success",
-        //       });
-        //       router.push(RouteConstant.auth.login.path);
-        //     }
-        //     // Complete signup with OTP
-        //     // dispatch(authStore.mutation.setCompleteEnrollmentFlowPayload({
-        //     //     ...authState?.completeEnrollmentFlowPayload, ...request,
-        //     //     otp: otp
-        //     // }))
-        //     // router.push(RouteConstant.auth.completeSignup.path)
-        //   },
-        //   onResend: async () => {
-        //     console.log("Otp resend");
-        //     await resendOtp({ userEmail: values.userEmail });
-        //   },
-        // });
       } else {
         BaseToast({
           message: response?.responseMessage || "Signup failed.",
@@ -87,10 +61,12 @@ const InitiateSignupForm = (
       console.error("Enrollment initiation failed:", err);
     }
   };
+
   const initialValues = {
     ...initiateEnrollmentRequestInit,
     ...completeEnrollmentRequestInit,
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit: handleSignUp,
@@ -98,51 +74,18 @@ const InitiateSignupForm = (
   });
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        // alignItems: "center",
-        // width:"100vw"
-      }}
-    >
-      <form
-        className={"form"}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
-        }}
-        {...props}
-      >
-        <div
-          className={"form-input-container"}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-            gap: "8px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "12px",
-              paddingBottom: "8px",
-            }}
-          >
-            <img src="/Voxera-Logo-Black-1.svg" />
+    <div className={styles.pageContainer}>
+      <form className={styles.form} {...props}>
+        <div className={styles.formInputContainer}>
+          <div className={styles.headerContainer}>
+            <img src="/Voxera-Logo-Black-1.svg" alt="Voxera logo" />
             <p>
               Sign up to analyze reviews, benchmark against competitors, and
               uncover market trends that drive business growth.
             </p>
           </div>
-          <div style={{ display: "flex", gap: "24px" }}>
+
+          <div className={styles.socialButtonGroup}>
             <BaseButton
               text="Sign up with Google"
               textStyle={{ color: "black" }}
@@ -162,10 +105,13 @@ const InitiateSignupForm = (
               }}
             />
           </div>
+
           <div>
             <p>Or</p>
           </div>
-          <div className={"form-input-flex-group"}></div>
+
+          <div className={styles.formInputFlexGroup}></div>
+
           <div>
             <BaseInput
               label="Email Address"
@@ -175,37 +121,27 @@ const InitiateSignupForm = (
               style={{ width: "385px" }}
             />
           </div>
-          <div style={{ display: "flex", gap: "2px", paddingTop: "24px" }}>
+
+          <div className={styles.checkboxRow}>
             <BaseCheckbox />
-            <h3
-              style={{
-                fontSize: "0.9rem",
-                fontWeight: "500",
-                color: "#344054",
-                paddingBottom: "8px",
-              }}
-            >
+            <h3 className={styles.checkboxLabel}>
               I agree to the Terms of Service and Privacy Policy.
             </h3>
           </div>
         </div>
-        <div className={"form-input-container"}>
+
+        <div className={styles.formInputContainer}>
           <div>
             <BaseButton
               text={"Sign Up"}
               type="submit"
-              // onClick={() => formik.handleSubmit()}
               isLoading={isLoading}
-              // onClick={() =>
-              //   router.push(RouteConstant.auth.completeSignup.path)
-              // }
               textStyle={{ color: "black" }}
               style={{ width: "160px", backgroundColor: "#F44A0E54" }}
             />
           </div>
-          <div
-            style={{ display: "flex", gap: "4px", justifyContent: "center" }}
-          >
+
+          <div className={styles.loginRow}>
             <p>Already have an account?</p>
             <BaseButton
               text="Log in"
@@ -218,7 +154,6 @@ const InitiateSignupForm = (
                 backgroundColor: "white",
                 border: "none",
                 padding: "0px",
-                // borderColor: "#D0D5DD",
               }}
             />
           </div>

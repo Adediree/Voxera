@@ -9,8 +9,9 @@ import { Prediction } from "@/components/layouts/PredictionHeader";
 import ReadMore from "@/components/layouts/ReadMore";
 import BaseProgress from "@/components/ui/progress/BaseProgress";
 import { ModernSelect, ModernSelectOption } from "qucoon-components";
+import styles from "./SourceComparison.module.css";
 
-export default function Feedback() {
+export default function SourceComparison() {
   const StarRatingData = [
     { name: "Positive", value: 50, color: "#00B67A" },
     { name: "Neutral", value: 27, color: "#FBBC05" },
@@ -54,689 +55,241 @@ export default function Feedback() {
   ];
 
   return (
-    <div
-      className="overall-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        backgroundColor: "#FAFBFC",
-        padding: "24px",
-      }}
-    >
-      <div
-        className="container-1"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
+    <div className={`overall-container ${styles.overallContainer}`}>
+      <div className={`container-1 ${styles.container1}`}>
         <div>
-          <p
-            style={{ fontSize: "1.25rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            Source Comparison
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
+          <p className={styles.headerTitle}>Source Comparison</p>
+          <p className={styles.headerSubtitle}>
             Compare how your business is performing across different review
             platforms.
           </p>
         </div>
         <div>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
-            All data synced 10 mins ago
-          </p>
+          <p className={styles.lastSync}>All data synced 10 mins ago</p>
         </div>
       </div>
-      <div className="container-2" style={{ display: "flex", gap: "10px" }}>
-        <div
-          className="review-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "40px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "310px",
-            height: "150px",
-          }}
-        >
-          <div
-            className="review-header"
-            style={{ display: "flex", alignItems: "center", gap: "6px" }}
-          >
-            <img src="/ReviewsImage.svg" />
-            <p
-              className="review-title"
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "500",
-                color: "#4B5563",
-              }}
-            >
+      <div className={`container-2 ${styles.container2}`}>
+        <div className={`review-container ${styles.reviewContainer}`}>
+          <div className={`review-header ${styles.reviewHeader}`}>
+            <img src="/ReviewsImage.svg" alt="reviews" />
+            <p className={`review-title ${styles.reviewTitle}`}>
               Total Reviews by Source
             </p>
-            <img src="/info.svg" />
+            <img src="/info.svg" alt="info" />
           </div>
-          <div className="review-chart" style={{ display: "flex" }}>
-            <div
-              className="review-1"
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingRight: "12px",
-                borderRight: "1px solid #E4E4E4",
-              }}
-            >
+          <div className={`review-chart ${styles.reviewChart}`}>
+            <div className={`review-1 ${styles.review1}`}>
               <img
                 src="/google-icon.svg"
-                style={{ width: "24px", height: "24px" }}
+                className={styles.icon24}
+                alt="google"
               />
               <p>420</p>
             </div>
-            <div
-              className="review-2"
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                borderRight: "1px solid #E4E4E4",
-              }}
-            >
+            <div className={`review-2 ${styles.review2}`}>
               <img
                 src="/trustpilot 1.svg"
-                style={{ width: "24px", height: "24px" }}
+                className={styles.icon24}
+                alt="trustpilot"
               />
               <p>120</p>
             </div>
-            <div
-              className="review-3"
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-              }}
-            >
+            <div className={`review-3 ${styles.review3}`}>
               <img
                 src="/Voxera-Submark 2.svg"
-                style={{ width: "24px", height: "24px" }}
+                className={styles.icon24}
+                alt="voxera"
               />
               <p>500</p>
             </div>
           </div>
         </div>
         <div
-          className="average-sentiment-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "24px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "310px",
-            height: "150px",
-          }}
+          className={`average-sentiment-container ${styles.averageSentimentContainer}`}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <div
-              className="review-header"
-              style={{ display: "flex", alignItems: "center", gap: "6px" }}
-            >
-              <img src="/Emoji-Image.svg" />
-              <p
-                className="review-title"
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: "500",
-                  color: "#4B5563",
-                }}
-              >
+          <div className={styles.avgSentimentHeader}>
+            <div className={styles.reviewHeader}>
+              <img src="/Emoji-Image.svg" alt="emoji" />
+              <p className={`review-title ${styles.reviewTitle}`}>
                 Average Sentiment
               </p>
-              <img src="/info.svg" />
+              <img src="/info.svg" alt="info" />
             </div>
-            <p
-              style={{
-                fontSize: "1.25rem",
-                fontWeight: "600",
-                color: "#4B5563",
-              }}
-            >
-              65%
-            </p>
+            <p className={styles.avgPercent}>65%</p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <div className={styles.progressColumn}>
             <BaseProgress currentProgressValue={65} />
-            <p style={{ fontSize: "0.6875rem", fontWeight: "400" }}>
+            <p className={styles.progressNote}>
               Overall customer sentiment across each source.
             </p>
           </div>
         </div>
-        <div
-          className="star-rating-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "24px",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "6px",
-            width: "310px",
-            height: "150px",
-          }}
-        >
-          <div
-            className="review-header"
-            style={{ display: "flex", alignItems: "center", gap: "6px" }}
-          >
-            <img src="/Star-Rating-Image.svg" />
-            <p
-              className="review-title"
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "500",
-                color: "#4B5563",
-              }}
-            >
+        <div className={`star-rating-container ${styles.starRatingContainer}`}>
+          <div className={styles.reviewHeader}>
+            <img src="/Star-Rating-Image.svg" alt="star" />
+            <p className={`review-title ${styles.reviewTitle}`}>
               Star Rating Trend
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <div className={styles.progressColumn}>
             <StackedProgressBar data={StarRatingData} height={25} />
-            <div className="rating" style={{ display: "flex", gap: "8px" }}>
-              <div
-                style={{ display: "flex", gap: "4px", alignItems: "center" }}
-              >
-                <img src="/star-rate.svg" />
-                <p
-                  style={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    color: "#4B5563",
-                  }}
-                >
-                  4.8
-                </p>
+            <div className={`rating ${styles.rating}`}>
+              <div className={styles.ratingValue}>
+                <img src="/star-rate.svg" alt="rate" />
+                <p className={styles.ratingText}>4.8</p>
               </div>
-              <div
-                style={{ display: "flex", gap: "4px", alignItems: "flex-end" }}
-              >
-                <img src="/trend-up-fill.svg" />
-                <p
-                  style={{
-                    fontSize: "0.625rem",
-                    fontWeight: "500",
-                    color: "#34A853",
-                  }}
-                >
-                  +23%
-                </p>
+              <div className={styles.ratingTrend}>
+                <img src="/trend-up-fill.svg" alt="trend" />
+                <p className={styles.trendText}>+23%</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div
-        className="container-3"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          padding: "16px",
-          backgroundColor: "white",
-          borderRadius: "6px",
-        }}
-      >
+      <div className={`container-3 ${styles.container3}`}>
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <div
-            className="sentiment-source-container"
+            className={`sentiment-source-container ${styles.sentimentSourceContainer}`}
             style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <p
-              style={{
-                fontSize: "0.9rem",
-                fontWeight: "600",
-                color: "#4B5563",
-              }}
-            >
-              Sentiment By Source
-            </p>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "400",
-                color: "#4B5563",
-              }}
-            >
-              Reviews
-            </p>
+            <p className={styles.sentimentBySource}>Sentiment By Source</p>
+            <p className={styles.reviewsLabel}>Reviews</p>
           </div>
           <div
-            className="PNN-review-chart"
+            className={`PNN-review-chart ${styles.PNNReviewChart}`}
             style={{ display: "flex", justifyContent: "space-between" }}
           >
             <div
-              className="PNN container"
+              className={`PNN container ${styles.PNNContainer}`}
               style={{ display: "flex", gap: "8px" }}
             >
               <div
                 style={{ display: "flex", gap: "4px", alignItems: "center" }}
               >
-                <img src="/positive-circle.svg" />
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    fontWeight: "400",
-                    color: "#4B5563",
-                  }}
-                >
-                  Positive
-                </p>
+                <img src="/positive-circle.svg" alt="positive" />
+                <p className={styles.smallText}>Positive</p>
               </div>
               <div
                 style={{ display: "flex", gap: "4px", alignItems: "center" }}
               >
-                <img src="/neutral-circle.svg" />
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    fontWeight: "400",
-                    color: "#4B5563",
-                  }}
-                >
-                  Neutral
-                </p>
+                <img src="/neutral-circle.svg" alt="neutral" />
+                <p className={styles.smallText}>Neutral</p>
               </div>
               <div
                 style={{ display: "flex", gap: "4px", alignItems: "center" }}
               >
-                <img src="/negative-circle.svg" />
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    fontWeight: "400",
-                    color: "#4B5563",
-                  }}
-                >
-                  Negative
-                </p>
+                <img src="/negative-circle.svg" alt="negative" />
+                <p className={styles.smallText}>Negative</p>
               </div>
             </div>
-            <div className="review-chart" style={{ display: "flex" }}>
-              <div
-                className="review-1"
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                  paddingRight: "12px",
-                  borderRight: "1px solid #E4E4E4",
-                }}
-              >
-                <img
-                  src="/google-icon.svg"
-                  style={{ width: "18px", height: "18px" }}
-                />
-                <p
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: "600",
-                    color: "#4B5563",
-                  }}
-                >
-                  420
-                </p>
+            <div className={`review-chart ${styles.reviewChart}`}>
+              <div className={styles.review1Small}>
+                <img src="/google-icon.svg" className={styles.icon18} alt="g" />
+                <p className={styles.smallNumber}>420</p>
               </div>
-              <div
-                className="review-2"
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                  paddingLeft: "12px",
-                  paddingRight: "12px",
-                  borderRight: "1px solid #E4E4E4",
-                }}
-              >
+              <div className={styles.review2Small}>
                 <img
                   src="/trustpilot 1.svg"
-                  style={{ width: "18px", height: "18px" }}
+                  className={styles.icon18}
+                  alt="t"
                 />
-                <p
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: "600",
-                    color: "#4B5563",
-                  }}
-                >
-                  120
-                </p>
+                <p className={styles.smallNumber}>120</p>
               </div>
-              <div
-                className="review-3"
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                  paddingLeft: "12px",
-                  paddingRight: "12px",
-                }}
-              >
+              <div className={styles.review3Small}>
                 <img
                   src="/Voxera-Submark 2.svg"
-                  style={{ width: "18px", height: "18px" }}
+                  className={styles.icon18}
+                  alt="v"
                 />
-                <p
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: "600",
-                    color: "#4B5563",
-                  }}
-                >
-                  500
-                </p>
+                <p className={styles.smallNumber}>500</p>
               </div>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            justifyContent: "space-between",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "2px",
-              alignItems: "center",
-              width: "fit-content",
-              // border: "1px solid",
-            }}
-          >
+        <div className={styles.compareBarsRow}>
+          <div className={styles.barBlock}>
             <GoogleBar data={GoogleData} height={40} />
-            <div
-              className=""
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingRight: "12px",
-              }}
-            >
-              <img
-                src="/google-icon.svg"
-                style={{ width: "18px", height: "18px" }}
-              />
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: "450",
-                  color: "#4B5563",
-                }}
-              >
-                Google
-              </p>
+            <div className={styles.barLabel}>
+              <img src="/google-icon.svg" className={styles.icon18} alt="g" />
+              <p className={styles.barText}>Google</p>
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "2px",
-              alignItems: "center",
-              width: "fit-content",
-              // border: "1px solid",
-            }}
-          >
+          <div className={styles.barBlock}>
             <TrustPilotBar data={TrustPilotData} height={40} />
-            <div
-              className=""
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingRight: "12px",
-              }}
-            >
-              <img
-                src="/trustpilot 1.svg"
-                style={{ width: "18px", height: "18px" }}
-              />
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: "450",
-                  color: "#4B5563",
-                }}
-              >
-                TrustPilot
-              </p>
+            <div className={styles.barLabel}>
+              <img src="/trustpilot 1.svg" className={styles.icon18} alt="t" />
+              <p className={styles.barText}>TrustPilot</p>
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "2px",
-              alignItems: "center",
-              width: "fit-content",
-              // border: "1px solid",
-            }}
-          >
+          <div className={styles.barBlock}>
             <VoxeraBar data={VoxeraData} height={40} />
-            <div
-              className=""
-              style={{
-                display: "flex",
-                gap: "8px",
-                alignItems: "center",
-                paddingRight: "12px",
-              }}
-            >
+            <div className={styles.barLabel}>
               <img
                 src="/Voxera-Submark 2.svg"
-                style={{ width: "18px", height: "18px" }}
+                className={styles.icon18}
+                alt="v"
               />
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: "450",
-                  color: "#4B5563",
-                }}
-              >
-                Voxera
-              </p>
+              <p className={styles.barText}>Voxera</p>
             </div>
           </div>
         </div>
       </div>
-      <div
-        className="container-4"
-        style={{
-          display: "flex",
-          gap: "4px",
-          justifyContent: "space-between",
-          paddingBottom: "2rem",
-        }}
-      >
-        <div
-          className="ai-summary-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "8px",
-            gap: "12px",
-            width: "400px",
-            height: "260px",
-            // border: "1px solid",
-          }}
-        >
+      <div className={`container-4 ${styles.container4}`}>
+        <div className={`ai-summary-container ${styles.aiSummaryContainer}`}>
           <AISummary />
-          <p
-            style={{ fontSize: "0.9rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            Keypoints
-          </p>
+          <p className={styles.keypoints}>Keypoints</p>
           <ReadMore
             text="Most customers express satisfaction with the friendly staff and fast delivery, though a number of reviews highlight delays during peak hours. Pricing is generally perceived as fair, with little variation in opinion"
             maxWords={30}
           />
-          <div style={{ display: "flex", gap: "8px" }}>
-            <button
-              style={{ background: "none", border: "none", cursor: "pointer" }}
-            >
+          <div className={styles.iconRow}>
+            <button className={styles.iconButton}>
               <img
                 src="/person-icon.svg"
-                style={{ width: "24px", height: "24px" }}
+                className={styles.icon24}
+                alt="person"
               />
             </button>
-            <button
-              style={{ background: "none", border: "none", cursor: "pointer" }}
-            >
-              <img
-                src="/copy-icon.svg"
-                style={{ width: "24px", height: "24px" }}
-              />
+            <button className={styles.iconButton}>
+              <img src="/copy-icon.svg" className={styles.icon24} alt="copy" />
             </button>
           </div>
         </div>
-        <div
-          className="prediction-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "16px",
-            backgroundColor: "white",
-            borderRadius: "8px",
-            gap: "40px",
-            width: "520px",
-            height: "260px",
-            // border: "1px solid",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: "8px",
-              justifyContent: "space-between",
-            }}
-          >
+        <div className={`prediction-container ${styles.predictionContainer}`}>
+          <div className={styles.predictionHeader}>
             <Prediction />
             <ModernSelect
               placeholderLabel="Last Year"
-              // onOptionSelect={}
               selectOptions={predictionOptions}
               size="small"
-              // label="Top Keywords"
-              style={{
-                fontSize: "16px",
-                color: "#667085",
-                width: "150px",
-                border: "none",
-              }}
+              className={styles.modernSelect}
             />
           </div>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
-          >
+          <div className={styles.predictionBody}>
             <div style={{ width: "366px" }}>
               <ReadMore
                 text={
                   <>
                     Customer sentiment is expected to stay positive over the
-                    next{" "}
-                    <span
-                      style={{
-                        fontSize: "0.75rem",
-                        fontWeight: "700",
-                        color: "#4B5563",
-                      }}
-                    >
-                      30 days
-                    </span>
-                    , boosted by praise for staff and service quality.🚀
-                    Positive reviews may grow{" "}
-                    <span
-                      style={{
-                        fontSize: "0.75rem",
-                        fontWeight: "700",
-                        color: "#4B5563",
-                      }}
-                    >
-                      (+5%)
-                    </span>
-                    , but unresolved delays could cause satisfaction to drop by{" "}
-                    <span
-                      style={{
-                        fontSize: "0.75rem",
-                        fontWeight: "700",
-                        color: "#4B5563",
-                      }}
-                    >
-                      12%
-                    </span>{" "}
-                    during peak hours.
+                    next <span className={styles.highlight}>30 days</span>,
+                    boosted by praise for staff and service quality.🚀 Positive
+                    reviews may grow{" "}
+                    <span className={styles.highlight}>(+5%)</span>, but
+                    unresolved delays could cause satisfaction to drop by{" "}
+                    <span className={styles.highlight}>12%</span> during peak
+                    hours.
                   </>
                 }
                 maxWords={50}
               />
             </div>
-            <button
-              style={{
-                display: "flex",
-                gap: "2px",
-                alignItems: "center",
-                width: "fit-content",
-                background: "none",
-                border: "none",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: "600",
-                  color: "#F44A0E",
-                  borderBottom: "1px solid",
-                }}
-              >
-                Create Action Plan
-              </p>
-              <img src="/arrow-right.svg" />
+            <button className={styles.createActionButton}>
+              <p className={styles.createActionText}>Create Action Plan</p>
+              <img src="/arrow-right.svg" alt="arrow" />
             </button>
           </div>
         </div>

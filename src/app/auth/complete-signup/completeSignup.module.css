@@ -1,16 +1,16 @@
-.otp-page-wrapper {
+.otpPageWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; /* keeps it from centering vertically */
   gap: 2rem;
-  padding-top: 60px; /* same as your original */
+  padding-top: 24px; /* same as your original */
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.otp-content {
+.otpContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,31 +18,31 @@
   max-width: 500px;
 }
 
-.otp-content img {
+.otpContent img {
   width: 60px;
 }
 
-.otp-content h1 {
+.otpContent h1 {
   font-size: 1.4rem;
   font-weight: 600;
   color: #1f2937;
   margin-bottom: 0.3rem;
 }
 
-.otp-content p {
+.otpContent p {
   font-size: 1rem;
   color: #374151;
   line-height: 1.5;
 }
 
-.otp-buttons {
+.otpButtons {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.otp-link-button {
+.otpLinkButton {
   border: none;
   background: none;
   border-bottom: 1px solid #1f2937;
@@ -53,7 +53,7 @@
   transition: all 0.3s ease;
 }
 
-.otp-link-button:hover {
+.otpLinkButton:hover {
   color: #ea4335;
   border-bottom-color: #ea4335;
 }
@@ -63,37 +63,37 @@
    =============================== */
 
 @media (max-width: 768px) {
-  .otp-page-wrapper {
+  .otpPageWrapper {
     padding-top: 50px;
   }
 
-  .otp-content h1 {
+  .otpContent h1 {
     font-size: 1.3rem;
   }
 
-  .otp-content p {
+  .otpContent p {
     font-size: 0.95rem;
   }
 
-  .otp-buttons {
+  .otpButtons {
     gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .otp-page-wrapper {
+  .otpPageWrapper {
     padding-top: 40px;
   }
 
-  .otp-content h1 {
+  .otpContent h1 {
     font-size: 1.1rem;
   }
 
-  .otp-content p {
+  .otpContent p {
     font-size: 0.9rem;
   }
 
-  .otp-link-button {
+  .otpLinkButton {
     font-size: 0.85rem;
   }
 }

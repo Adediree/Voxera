@@ -1,0 +1,29 @@
+.otpWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.otpContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.otpContent h1 {
+  font-size: 1.4rem;
+}
+
+.otpContent p {
+  font-size: 1rem;
+}
+
+.redirectText {
+  font-size: 1rem;
+}

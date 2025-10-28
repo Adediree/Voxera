@@ -1,0 +1,369 @@
+.overallContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #FAFBFC;
+  padding: 24px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.headerTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.headerSubtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+.lastSync {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+/* container-2 row */
+.container2 {
+  display: flex;
+  gap: 10px;
+}
+
+/* review card */
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 310px;
+  height: 150px;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviewTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4B5563;
+}
+
+/* review chart */
+.reviewChart {
+  display: flex;
+}
+
+.review1 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-right: 12px;
+  border-right: 1px solid #E4E4E4;
+}
+
+.review2 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-right: 1px solid #E4E4E4;
+}
+
+.review3 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.icon24 {
+  width: 24px;
+  height: 24px;
+}
+
+/* average sentiment card */
+.averageSentimentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 310px;
+  height: 150px;
+}
+
+.avgSentimentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avgPercent {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.progressColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.progressNote {
+  font-size: 0.6875rem;
+  font-weight: 400;
+}
+
+/* star rating card */
+.starRatingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 310px;
+  height: 150px;
+}
+
+.rating {
+  display: flex;
+  gap: 8px;
+}
+
+.ratingValue {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.ratingText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4B5563;
+}
+
+.ratingTrend {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.trendText {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #34A853;
+}
+
+/* container-3 */
+.container3 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.sentimentSourceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sentimentBySource {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.reviewsLabel {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+.PNNReviewChart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PNNContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.smallText {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+/* small review numbers row */
+.review1Small {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-right: 12px;
+  border-right: 1px solid #E4E4E4;
+}
+
+.review2Small {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-right: 1px solid #E4E4E4;
+}
+
+.review3Small {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.icon18 {
+  width: 18px;
+  height: 18px;
+}
+
+.smallNumber {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+/* comparison bars row */
+.compareBarsRow {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.barBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  width: fit-content;
+}
+
+.barLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.barText {
+  font-size: 0.875rem;
+  font-weight: 450;
+  color: #4B5563;
+}
+
+/* container-4 */
+.container4 {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+.aiSummaryContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  gap: 12px;
+  width: 400px;
+  height: 260px;
+}
+
+.keypoints {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.iconRow {
+  display: flex;
+  gap: 8px;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.predictionContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  gap: 40px;
+  width: 520px;
+  height: 260px;
+}
+
+.predictionHeader {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.modernSelect {
+  font-size: 16px;
+  color: #667085;
+  width: 150px;
+  border: none;
+}
+
+.predictionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.highlight {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4B5563;
+}
+
+.createActionButton {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  width: fit-content;
+  background: none;
+  border: none;
+}
+
+.createActionText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #F44A0E;
+  border-bottom: 1px solid;
+}

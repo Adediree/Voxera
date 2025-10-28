@@ -1,0 +1,67 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.headerSection h1 {
+  font-size: 1.7rem;
+  color: #2a3039;
+}
+
+.headerSection p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.inputRow {
+  display: flex;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.channelHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.infoRow p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.buttonRight {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}

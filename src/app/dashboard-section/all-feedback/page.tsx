@@ -1,167 +1,63 @@
 "use client";
 
 import AllFeedbackTable from "@/components/content/dashboard/issue/allLetterOfCredit/charts/All-Feedback-Table";
-
 import {
   BaseDatePicker,
   ModernSelect,
   type ModernSelectOption,
 } from "qucoon-components";
+import styles from "./AllFeedback.module.css";
 
-export default function Feedback() {
+export default function AllFeedback() {
   const platform: ModernSelectOption[] = [
-    {
-      label: "Delivery Speed",
-      value: "Delivery Speed",
-    },
-
-    {
-      label: "Customer Service",
-      value: "Customer Service",
-    },
-
-    {
-      label: "Food Quality",
-      value: "Food Quality",
-    },
-    {
-      label: "Pricing",
-      value: "Pricing",
-    },
+    { label: "Delivery Speed", value: "Delivery Speed" },
+    { label: "Customer Service", value: "Customer Service" },
+    { label: "Food Quality", value: "Food Quality" },
+    { label: "Pricing", value: "Pricing" },
   ];
-  const sentiment: ModernSelectOption[] = [
-    {
-      label: "Delivery Speed",
-      value: "Delivery Speed",
-    },
-
-    {
-      label: "Customer Service",
-      value: "Customer Service",
-    },
-
-    {
-      label: "Food Quality",
-      value: "Food Quality",
-    },
-    {
-      label: "Pricing",
-      value: "Pricing",
-    },
-  ];
-  const dateRange: ModernSelectOption[] = [
-    {
-      label: "Delivery Speed",
-      value: "Delivery Speed",
-    },
-
-    {
-      label: "Customer Service",
-      value: "Customer Service",
-    },
-
-    {
-      label: "Food Quality",
-      value: "Food Quality",
-    },
-    {
-      label: "Pricing",
-      value: "Pricing",
-    },
-  ];
+  const sentiment: ModernSelectOption[] = [...platform];
+  const dateRange: ModernSelectOption[] = [...platform];
 
   return (
-    <div
-      className="overall-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        backgroundColor: "#FAFBFC",
-        padding: "24px",
-      }}
-    >
-      <div
-        className="container-1"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
+    <div className={styles.overallContainer}>
+      <div className={styles.container1}>
         <div>
-          <p
-            style={{ fontSize: "1.25rem", fontWeight: "600", color: "#4B5563" }}
-          >
-            All Feedback
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
+          <p className={styles.title}>All Feedback</p>
+          <p className={styles.subtitle}>
             Track live customer feedback from all connected sources
           </p>
         </div>
         <div>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "400",
-              color: "#4B5563",
-            }}
-          >
-            All data synced 10 mins ago
-          </p>
+          <p className={styles.subtitle}>All data synced 10 mins ago</p>
         </div>
       </div>
 
-      <div
-        className="container-4"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "32px",
-          padding: "16px",
-          backgroundColor: "white",
-          borderRadius: "6px",
-          // width: "554px",
-          // height: "200px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            padding: "1rem",
-            backgroundColor: "#D9D9D945",
-            // border: "1px solid red",
-          }}
-        >
-          <div style={{ display: "flex", gap: "4px" }}>
-            <img src="/platform.svg" />{" "}
+      <div className={styles.container4}>
+        <div className={styles.filterBar}>
+          <div className={styles.filterGroup}>
+            <img src="/platform.svg" />
             <ModernSelect
               placeholderLabel="Platform"
-              // onOptionSelect={}
               selectOptions={platform}
               size="small"
-              // label="Top Keywords"
-              style={{ fontSize: "16px", color: "#667085", border: "none" }}
+              style={{
+                fontSize: "16px",
+                color: "#667085",
+                border: "none",
+              }}
             />
           </div>
-          <div style={{ display: "flex", gap: "4px" }}>
-            <img src="/sentiment.svg" />{" "}
+          <div className={styles.filterGroup}>
+            <img src="/sentiment.svg" />
             <ModernSelect
               placeholderLabel="Sentiment"
-              // onOptionSelect={}
               selectOptions={sentiment}
               size="small"
-              // label="Top Keywords"
-              style={{ fontSize: "16px", color: "#667085", border: "none" }}
+              style={{
+                fontSize: "16px",
+                color: "#667085",
+                border: "none",
+              }}
             />
           </div>
           <BaseDatePicker />

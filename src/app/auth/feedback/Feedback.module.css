@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 1.7rem;
+  color: #2a3039;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.platformList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.platformButton {
+  display: flex;
+  gap: 12px;
+  width: 240px;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 12px 12px 24px;
+  border-radius: 4px;
+  border: none;
+  background-color: #c8c8c824;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.platformButton:hover {
+  opacity: 0.9;
+}
+
+.active {
+  background-color: #f44a0e;
+}
+
+.platformLogo {
+  width: 24px;
+  height: 24px;
+}
+
+.platformName {
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+}
+
+.activeText {
+  color: #ffffff;
+}

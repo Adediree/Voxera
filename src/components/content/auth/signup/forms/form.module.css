@@ -1,0 +1,82 @@
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* Original form container */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Input container */
+.formInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+/* Header: logo and text */
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+/* Social button group */
+.socialButtonGroup {
+  display: flex;
+  gap: 24px;
+}
+
+/* Checkbox row (Terms agreement) */
+.checkboxRow {
+  display: flex;
+  gap: 2px;
+  padding-top: 24px;
+  align-items: center;
+}
+
+/* Checkbox text */
+.checkboxLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #344054;
+  padding-bottom: 8px;
+}
+
+/* Login redirect row */
+.loginRow {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Flex group (empty container retained for layout consistency) */
+.formInputFlexGroup {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/* Settings input container (if used elsewhere) */
+.settingsFormInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  border-bottom: 1px solid var(--gray--2);
+  padding-bottom: 1.5rem;
+}

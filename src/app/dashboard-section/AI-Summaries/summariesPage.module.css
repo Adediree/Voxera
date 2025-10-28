@@ -1,45 +1,65 @@
-.summaries-container-2 {
+.overallContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  background-color: #fafbfc;
+  padding: 24px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.summariesContainer2 {
   display: flex;
   gap: 48px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2rem;
   padding-bottom: 2.5rem;
-  /* flex: 1; */
   border-radius: 8px;
   background-color: white;
-  /* border: 1px solid red; */
 }
-.summaries-container-3 {
+
+.summariesContainer3 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* padding-left: 1rem; */
-  /* padding-right: 1rem; */
   padding-top: 0.5rem;
   padding-bottom: 2.5rem;
-  /* flex: 1; */
   border-radius: 8px;
-  /* background-color: white; */
-  /* border: 1px solid red; */
 }
 
-.summaries-chart-section {
+.summariesChartSection {
   display: flex;
   gap: 8px;
 }
 
-.summaries-chart {
+.summariesChart {
   display: flex;
   gap: 40px;
   align-items: center;
   padding: 16px;
   border-radius: 8px;
   background-color: #d9d9d938;
-  /* border: 1px solid orange; */
 }
 
-.summaries-trending-themes {
+.summariesTrendingThemes {
   flex: 1;
   padding: 16px;
   border-radius: 8px;
@@ -47,7 +67,7 @@
   border: 1px solid green;
 }
 
-.summaries-container-4 {
+.summariesContainer4 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -55,14 +75,24 @@
   padding-right: 1rem;
   padding-top: 1rem;
   padding-bottom: 2.5rem;
-  /* flex: 1; */
   border-radius: 8px;
-  /* background-color: white; */
-  /* border: 1px solid red; */
 }
 
-.summary-div {
+.summaryDiv {
   display: flex;
   gap: 8px;
   justify-content: space-between;
+}
+
+/* For red-highlighted inline spans */
+.highlightRedLarge {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #f44a0e;
+}
+
+.highlightRedSmall {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f44a0e;
 }

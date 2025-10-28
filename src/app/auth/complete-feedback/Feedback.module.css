@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 0px;
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subText {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.mainText {
+  font-size: 1rem;
+  color: #000000;
+}
+
+.dashboardButton {
+  margin-top: 8px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #f44a0e;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboardButton:hover {
+  opacity: 0.9;
+}

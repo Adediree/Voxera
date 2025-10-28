@@ -7,8 +7,9 @@ import PieChart from "@/components/content/dashboard/issue/allLetterOfCredit/cha
 import PositiveChart from "@/components/content/dashboard/issue/allLetterOfCredit/charts/PositiveChart";
 import RecentFeedback from "@/components/content/dashboard/issue/allLetterOfCredit/charts/RecentFeedbackChart";
 import Sentiment from "@/components/content/dashboard/issue/allLetterOfCredit/charts/Sentiment";
+import styles from "./Dashboard.module.css";
 
-export default function Feedback() {
+export default function Dashboard() {
   const feedbackData = [
     { name: "Google", value: 40 },
     { name: "Facebook", value: 20 },
@@ -17,32 +18,12 @@ export default function Feedback() {
   ];
 
   return (
-    <div
-      className="overall-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        backgroundColor: "#FAFBFC",
-        padding: "24px",
-      }}
-    >
-      <h1 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#A2AAB5" }}>
-        Dashboard
-      </h1>
-      <div
-        className="main-container"
-        style={{
-          display: "flex",
-          // justifyContent: "space-between",
-          gap: "48px",
-        }}
-      >
-        <div
-          className="container-1"
-          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-        >
-          <div style={{ display: "flex", gap: "4px" }}>
+    <div className={`${styles.overallContainer} overall-container`}>
+      <h1 className={styles.dashboardTitle}>Dashboard</h1>
+
+      <div className={`${styles.mainContainer} main-container`}>
+        <div className={`${styles.container1} container-1`}>
+          <div className={styles.chartRow}>
             <FeedbackChart />
             <PositiveChart
               percentage={58}
@@ -51,33 +32,27 @@ export default function Feedback() {
               neutral={1.0}
             />
           </div>
+
           <div>
             <RecentFeedback feedbacks={[]} />
           </div>
+
           <div>
             <FeedbackVolumeChart />
           </div>
         </div>
-        <div
-          className="container-2"
-          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-        >
+
+        <div className={`${styles.container2} container-2`}>
           <div>
             <Sentiment />
           </div>
+
           <DynamicKeywordsCloud />
-          <div
-            style={{
-              display: "flex",
-              padding: "16px",
-              border: "1px solid",
-              maxHeight: "300px",
-              backgroundColor: "white",
-              gap: "8px",
-            }}
-          >
+
+          <div className={styles.pieChartContainer}>
             <PieChart data={feedbackData} title="Feedback Sources" />
           </div>
+
           <div>
             <OvertimeChart />
           </div>

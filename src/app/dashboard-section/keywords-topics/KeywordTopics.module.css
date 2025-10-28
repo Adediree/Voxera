@@ -1,0 +1,145 @@
+.overallContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fafbfc;
+  padding: 24px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.subheading {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.synced {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.container2 {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.topMentionedLeft {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 554px;
+  height: 200px;
+}
+
+.topMentionedRight {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 400px;
+  height: 200px;
+}
+
+.topMentionedHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviewTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.container3 {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.keywordTrendsChart {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  width: 580px;
+  height: 265px;
+  min-height: 220px;
+}
+
+.keywordTrendsHeader {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chartTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.aiSummaryContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  gap: 12px;
+  width: 387px;
+  height: 266px;
+}
+
+.aiSummaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aiSummaryTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #474747;
+}
+
+.container4 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.tableHeader {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+}
